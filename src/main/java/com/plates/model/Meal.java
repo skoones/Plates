@@ -1,25 +1,32 @@
 package com.plates.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import java.util.List;
 
 //@Entity
-//@Data
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Meal {
 
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
 //    @Column(nullable = false, unique = true)
+    @EqualsAndHashCode.Include
     private String name;
 
     private String description;
 
+    @EqualsAndHashCode.Include
     private String recipeLink;
 
 //    @Enumerated(EnumType.STRING)
-    private MealType mealType;
+    private List<MealType> mealType;
 
 //    @Enumerated(EnumType.STRING)
-    private DietType dietType;
+    private List<DietType> dietType;
 }
