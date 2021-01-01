@@ -28,4 +28,5 @@ public class MealController {
     MealDto getHelloWorld() {
         return MEAL_DTO;
     }
+
 }

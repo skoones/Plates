@@ -25,7 +25,6 @@ public class MealDtoMapper {
 
     public Meal mapFromDto(MealDto mealDto) {
         return Meal.builder()
-                .id(mealDto.getId())
                 .name(mealDto.getName())
                 .description((mealDto.getDescription()))
                 .recipeLink(mealDto.getRecipeLink())
