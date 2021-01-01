@@ -1,7 +1,9 @@
 package com.plates.utility.mappers;
 
 import com.plates.dto.MealDto;
+import com.plates.model.DietType;
 import com.plates.model.Meal;
+import com.plates.model.MealType;
 import lombok.experimental.UtilityClass;
 
 import java.util.List;
@@ -15,12 +17,28 @@ public class MealDtoMapper {
                 .id(meal.getId())
                 .name(meal.getName())
                 .description(meal.getDescription())
-                .dietType(convertEnumList(meal.getDietType()))
-                .mealType(convertEnumList(meal.getMealType()))
+                .recipeLink(meal.getRecipeLink())
+                .dietType(convertFromEnumList(meal.getDietType()))
+                .mealType(convertFromEnumList(meal.getMealType()))
                 .build();
     }
 
-    private <E extends Enum<E>> List<String> convertEnumList(List<? extends Enum<E>> enumList) {
+    public Meal mapFromDto(MealDto mealDto) {
+        return Meal.builder()
+                .id(mealDto.getId())
+                .name(mealDto.getName())
+                .description((mealDto.getDescription()))
+                .recipeLink(mealDto.getRecipeLink())
+                .dietType(convertToEnumList(mealDto.getDietType(), DietType.class))
+                .mealType(convertToEnumList(mealDto.getMealType(), MealType.class))
+                .build();
+    }
+
+    private <E extends Enum<E>> List<E> convertToEnumList(List<String> stringList, Class<E> enumClass) {
+        return stringList.stream().map(element -> E.valueOf(enumClass, element)).collect(Collectors.toList());
+    }
+
+    private <E extends Enum<E>> List<String> convertFromEnumList(List<? extends Enum<E>> enumList) {
         return enumList.stream().map(Enum::name).collect(Collectors.toList());
     }
 }
