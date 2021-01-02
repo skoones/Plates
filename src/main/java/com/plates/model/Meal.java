@@ -1,34 +1,35 @@
 package com.plates.model;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
-import java.util.List;
+import javax.persistence.*;
+import java.util.Set;
 
-//@Entity
+@Entity
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Meal {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    //    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     @EqualsAndHashCode.Include
     private String name;
 
     private String description;
 
-    @EqualsAndHashCode.Include
     private String recipeLink;
 
-    //    @Enumerated(EnumType.STRING)
-    private List<MealType> mealType;
+    @ElementCollection
+    @Enumerated(value = EnumType.STRING)
+    private Set<MealType> mealType;
 
-    //    @Enumerated(EnumType.STRING)
-    private List<DietType> dietType;
+    @ElementCollection
+    @Enumerated(value = EnumType.STRING)
+    private Set<DietType> dietType;
 }

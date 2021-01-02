@@ -6,9 +6,9 @@ import com.plates.model.Meal;
 import com.plates.model.MealType;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MealDtoMapperTest {
 
@@ -17,8 +17,8 @@ class MealDtoMapperTest {
             .name("szakszuka pyszna")
             .description("exquisite jedzonko")
             .recipeLink("www.pysznejedzonko.com")
-            .dietType(List.of(DietType.VEGETARIAN))
-            .mealType(List.of(MealType.BREAKFAST, MealType.LUNCH))
+            .dietType(Set.of(DietType.VEGETARIAN))
+            .mealType(Set.of(MealType.BREAKFAST, MealType.LUNCH))
             .build();
 
     private static final MealDto TEST_MEAL_DTO = MealDto.builder()
@@ -26,8 +26,8 @@ class MealDtoMapperTest {
             .name("szakszuka pyszna")
             .description("exquisite jedzonko")
             .recipeLink("www.pysznejedzonko.com")
-            .dietType(List.of("VEGETARIAN"))
-            .mealType(List.of("BREAKFAST", "LUNCH"))
+            .dietType(Set.of("VEGETARIAN"))
+            .mealType(Set.of("BREAKFAST", "LUNCH"))
             .build();
 
     @Test
@@ -43,8 +43,8 @@ class MealDtoMapperTest {
         assertEquals(meal.getName(), mealDto.getName());
         assertEquals(meal.getDescription(), mealDto.getDescription());
         assertEquals(meal.getRecipeLink(), mealDto.getRecipeLink());
-        assertEquals(List.of("VEGETARIAN"), mealDto.getDietType());
-        assertEquals(List.of("BREAKFAST", "LUNCH"), mealDto.getMealType());
+        assertEquals(Set.of("VEGETARIAN"), mealDto.getDietType());
+        assertEquals(Set.of("BREAKFAST", "LUNCH"), mealDto.getMealType());
     }
 
     @Test
@@ -59,8 +59,8 @@ class MealDtoMapperTest {
         assertEquals(meal.getName(), mealDto.getName());
         assertEquals(meal.getDescription(), mealDto.getDescription());
         assertEquals(meal.getRecipeLink(), mealDto.getRecipeLink());
-        assertEquals(List.of(DietType.VEGETARIAN), meal.getDietType());
-        assertEquals(List.of(MealType.BREAKFAST, MealType.LUNCH), meal.getMealType());
+        assertEquals(Set.of(DietType.VEGETARIAN), meal.getDietType());
+        assertEquals(Set.of(MealType.BREAKFAST, MealType.LUNCH), meal.getMealType());
     }
 
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,8 +24,8 @@ public class MealServiceImpl implements MealService {
                 .id(1L)
                 .name("jajeczniczka")
                 .description("pyszniutka")
-                .dietType(List.of(DietType.VEGETARIAN))
-                .mealType(List.of(MealType.BREAKFAST))
+                .dietType(Set.of(DietType.VEGETARIAN))
+                .mealType(Set.of(MealType.BREAKFAST))
                 .build();
 
         Meal tempMeal2 = Meal.builder()
@@ -32,8 +33,8 @@ public class MealServiceImpl implements MealService {
                 .name("makaron ze szpinakiem i serem mmm")
                 .description("top jedzonko")
                 .recipeLink("www.szpinakiser.pl")
-                .dietType(List.of(DietType.VEGETARIAN))
-                .mealType(List.of(MealType.LUNCH))
+                .dietType(Set.of(DietType.VEGETARIAN))
+                .mealType(Set.of(MealType.LUNCH))
                 .build();
 
 

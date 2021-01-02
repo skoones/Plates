@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @AllArgsConstructor
@@ -18,9 +19,10 @@ public class MealController {
             .name("szakszuka pyszna")
             .description("bardzo dobra mniam")
             .recipeLink("www.pysznejedzonko.com")
-            .mealType(new ArrayList<>(List.of("LUNCH")))
-            .dietType(new ArrayList<>(List.of("VEGETARIAN")))
+            .mealType(Set.of("LUNCH"))
+            .dietType(Set.of("VEGETARIAN"))
             .build();
+
     private final MealService mealService;
 
     @PostMapping("/hello")

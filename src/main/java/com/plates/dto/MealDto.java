@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.List;
+import java.util.Set;
 
 @Data
 @Builder
@@ -23,8 +23,8 @@ public class MealDto {
     @EqualsAndHashCode.Include
     private String recipeLink;
 
-    private List<String> mealType;
+    private Set<String> mealType;
 
-    private List<String> dietType;
+    private Set<String> dietType;
 
 }

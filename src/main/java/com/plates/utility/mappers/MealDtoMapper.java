@@ -7,6 +7,7 @@ import com.plates.model.MealType;
 import lombok.experimental.UtilityClass;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @UtilityClass
@@ -18,8 +19,8 @@ public class MealDtoMapper {
                 .name(meal.getName())
                 .description(meal.getDescription())
                 .recipeLink(meal.getRecipeLink())
-                .dietType(convertFromEnumList(meal.getDietType()))
-                .mealType(convertFromEnumList(meal.getMealType()))
+                .dietType(convertFromEnumSet(meal.getDietType()))
+                .mealType(convertFromEnumSet(meal.getMealType()))
                 .build();
     }
 
@@ -28,16 +29,16 @@ public class MealDtoMapper {
                 .name(mealDto.getName())
                 .description((mealDto.getDescription()))
                 .recipeLink(mealDto.getRecipeLink())
-                .dietType(convertToEnumList(mealDto.getDietType(), DietType.class))
-                .mealType(convertToEnumList(mealDto.getMealType(), MealType.class))
+                .dietType(convertToEnumSet(mealDto.getDietType(), DietType.class))
+                .mealType(convertToEnumSet(mealDto.getMealType(), MealType.class))
                 .build();
     }
 
-    private <E extends Enum<E>> List<E> convertToEnumList(List<String> stringList, Class<E> enumClass) {
-        return stringList.stream().map(element -> E.valueOf(enumClass, element)).collect(Collectors.toList());
+    private <E extends Enum<E>> Set<E> convertToEnumSet(Set<String> stringSet, Class<E> enumClass) {
+        return stringSet.stream().map(element -> E.valueOf(enumClass, element)).collect(Collectors.toSet());
     }
 
-    private <E extends Enum<E>> List<String> convertFromEnumList(List<? extends Enum<E>> enumList) {
-        return enumList.stream().map(Enum::name).collect(Collectors.toList());
+    private <E extends Enum<E>> Set<String> convertFromEnumSet(Set<? extends Enum<E>> enumSet) {
+        return enumSet.stream().map(Enum::name).collect(Collectors.toSet());
     }
 }
