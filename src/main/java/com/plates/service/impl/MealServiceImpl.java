@@ -6,6 +6,7 @@ import com.plates.model.Meal;
 import com.plates.model.MealType;
 import com.plates.service.MealService;
 import com.plates.utility.mappers.MealDtoMapper;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class MealServiceImpl implements MealService {
 
     @Override
@@ -31,6 +33,7 @@ public class MealServiceImpl implements MealService {
                 .description("top jedzonko")
                 .recipeLink("www.szpinakiser.pl")
                 .dietType(List.of(DietType.VEGETARIAN))
+                .mealType(List.of(MealType.LUNCH))
                 .build();
 
 

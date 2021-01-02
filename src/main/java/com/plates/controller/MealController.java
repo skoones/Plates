@@ -1,12 +1,15 @@
 package com.plates.controller;
 
 import com.plates.dto.MealDto;
+import com.plates.service.MealService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/meals")
 public class MealController {
 
@@ -18,6 +21,7 @@ public class MealController {
             .mealType(new ArrayList<>(List.of("LUNCH")))
             .dietType(new ArrayList<>(List.of("VEGETARIAN")))
             .build();
+    private final MealService mealService;
 
     @PostMapping("/hello")
     void postHelloWorld(@RequestBody MealDto mealDto) {
@@ -29,4 +33,8 @@ public class MealController {
         return MEAL_DTO;
     }
 
+    @GetMapping("/")
+    List<MealDto> getMeals() {
+        return mealService.getAllMeals();
+    }
 }
