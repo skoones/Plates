@@ -6,7 +6,6 @@ import com.plates.model.Meal;
 import com.plates.model.MealType;
 import lombok.experimental.UtilityClass;
 
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
