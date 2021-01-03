@@ -44,6 +44,8 @@ public class MealServiceImpl implements MealService {
 
     @Override
     public void updateMeal(MealDto mealDto) {
+        mealRepository.findById(mealDto.getId()).orElseThrow();
+
         mealRepository.save(MealDtoMapper.mapFromDto(mealDto));
     }
 

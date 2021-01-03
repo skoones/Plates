@@ -31,12 +31,12 @@ public class MealController {
         return mealService.getMealDetailsById(mealId);
     }
 
-    @PutMapping("/meal/update")
+    @PutMapping("/update")
     void updateMealDetails(@RequestBody MealDto mealDto) {
         mealService.updateMeal(mealDto);
     }
 
-    @PostMapping("/")
+    @PostMapping("/add")
     void addMeal(@RequestBody MealDto mealDto) {
         mealService.addMeal(mealDto);
     }
