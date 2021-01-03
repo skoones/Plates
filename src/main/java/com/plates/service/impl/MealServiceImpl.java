@@ -2,6 +2,7 @@ package com.plates.service.impl;
 
 import com.plates.dto.MealDto;
 import com.plates.model.Meal;
+import com.plates.model.MealType;
 import com.plates.repository.MealRepository;
 import com.plates.service.MealService;
 import com.plates.utility.mappers.MealDtoMapper;
@@ -19,15 +20,21 @@ public class MealServiceImpl implements MealService {
 
     @Override
     public List<MealDto> getAllMeals() {
-
         List<Meal> meals = mealRepository.findAll();
 
-        return meals.stream().map(MealDtoMapper::mapToDto).collect(Collectors.toList());
+        return meals.stream()
+                .map(MealDtoMapper::mapToDto)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public <E extends Enum<E>> List<MealDto> getMealsByType(E type) {
-        return null;
+    public List<MealDto> getMealsByMealType(MealType type) {
+        return mealRepository.findAll()
+                .stream()
+                .filter(meal -> meal.getMealType().contains(type))
+                .map(MealDtoMapper::mapToDto)
+                .collect(Collectors.toList());
+
     }
 
     @Override

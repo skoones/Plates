@@ -26,7 +26,7 @@ public class MealController {
     @GetMapping("/{type}")
     List<MealDto> getMealsByMealType(@PathVariable String type) {
         MealType mealType = MealType.valueOf(type);
-        return mealService.getMealsByType(mealType);
+        return mealService.getMealsByMealType(mealType);
     }
 
     @GetMapping("/meal/{meal_id}")
