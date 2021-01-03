@@ -16,4 +16,6 @@ public interface MealService {
     void updateMeal(MealDto mealDto);
 
     void addMeal(MealDto mealDto);
+
+    void deleteMealById(Long mealId);
 }

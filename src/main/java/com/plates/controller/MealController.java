@@ -20,7 +20,7 @@ public class MealController {
         return mealService.getAllMeals();
     }
 
-    @GetMapping("/{type}")
+    @GetMapping("/type/{type}")
     List<MealDto> getMealsByMealType(@PathVariable String type) {
         MealType mealType = MealType.valueOf(type.toUpperCase());
         return mealService.getMealsByMealType(mealType);
@@ -39,5 +39,10 @@ public class MealController {
     @PostMapping("/add")
     void addMeal(@RequestBody MealDto mealDto) {
         mealService.addMeal(mealDto);
+    }
+
+    @DeleteMapping("/delete/{meal_id}")
+    void deleteMeal(@PathVariable("meal_id") Long mealId) {
+        mealService.deleteMealById(mealId);
     }
 }

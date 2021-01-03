@@ -53,4 +53,9 @@ public class MealServiceImpl implements MealService {
     public void addMeal(MealDto mealDto) {
         mealRepository.save(MealDtoMapper.mapFromDto(mealDto));
     }
+
+    @Override
+    public void deleteMealById(Long mealId) {
+        mealRepository.deleteById(mealId);
+    }
 }

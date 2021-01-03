@@ -20,7 +20,6 @@ public class MealDto {
 
     private String description;
 
-    @EqualsAndHashCode.Include
     private String recipeLink;
 
     private Set<String> mealType;
