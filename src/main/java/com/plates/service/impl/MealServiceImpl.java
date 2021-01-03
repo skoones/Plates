@@ -1,7 +1,6 @@
 package com.plates.service.impl;
 
 import com.plates.dto.MealDto;
-import com.plates.model.Meal;
 import com.plates.model.MealType;
 import com.plates.repository.MealRepository;
 import com.plates.service.MealService;
@@ -16,13 +15,12 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class MealServiceImpl implements MealService {
 
-    MealRepository mealRepository;
+    private final MealRepository mealRepository;
 
     @Override
     public List<MealDto> getAllMeals() {
-        List<Meal> meals = mealRepository.findAll();
 
-        return meals.stream()
+        return mealRepository.findAll().stream()
                 .map(MealDtoMapper::mapToDto)
                 .collect(Collectors.toList());
     }
@@ -39,6 +37,18 @@ public class MealServiceImpl implements MealService {
 
     @Override
     public MealDto getMealDetailsById(Long id) {
-        return null;
+        return mealRepository.findById(id)
+                .map(MealDtoMapper::mapToDto)
+                .orElseThrow();
+    }
+
+    @Override
+    public void updateMeal(MealDto mealDto) {
+        mealRepository.save(MealDtoMapper.mapFromDto(mealDto));
+    }
+
+    @Override
+    public void addMeal(MealDto mealDto) {
+        mealRepository.save(MealDtoMapper.mapFromDto(mealDto));
     }
 }

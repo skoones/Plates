@@ -1,14 +1,12 @@
 package com.plates.runner;
 
 import com.plates.dto.MealDto;
-import com.plates.model.Meal;
 import com.plates.repository.MealRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Set;
 
 @Component
@@ -31,8 +29,8 @@ public class AppRunner implements ApplicationRunner {
 //
 //        mealRepository.save(meal);
 
-        List<Meal> meals = mealRepository.findAll();
-        System.out.println(meals.isEmpty());
-        System.out.println(meals);
+//        List<Meal> meals = mealRepository.findAll();
+//        System.out.println(meals.isEmpty());
+//        System.out.println(meals);
     }
 }

@@ -13,4 +13,7 @@ public interface MealService {
 
     MealDto getMealDetailsById(Long id);
 
+    void updateMeal(MealDto mealDto);
+
+    void addMeal(MealDto mealDto);
 }
