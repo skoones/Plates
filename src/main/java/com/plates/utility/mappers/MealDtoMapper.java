@@ -18,8 +18,8 @@ public class MealDtoMapper {
                 .name(meal.getName())
                 .description(meal.getDescription())
                 .recipeLink(meal.getRecipeLink())
-                .dietType(convertFromEnumSet(meal.getDietType()))
-                .mealType(convertFromEnumSet(meal.getMealType()))
+                .dietType(convertToStringSet(meal.getDietType()))
+                .mealType(convertToStringSet(meal.getMealType()))
                 .build();
     }
 
@@ -29,16 +29,21 @@ public class MealDtoMapper {
                 .name(mealDto.getName())
                 .description((mealDto.getDescription()))
                 .recipeLink(mealDto.getRecipeLink())
-                .dietType(convertToEnumSet(mealDto.getDietType(), DietType.class))
-                .mealType(convertToEnumSet(mealDto.getMealType(), MealType.class))
+                .dietType(convertFromStringSet(mealDto.getDietType(), DietType.class))
+                .mealType(convertFromStringSet(mealDto.getMealType(), MealType.class))
                 .build();
     }
 
-    private <E extends Enum<E>> Set<E> convertToEnumSet(Set<String> stringSet, Class<E> enumClass) {
-        return stringSet.stream().map(element -> E.valueOf(enumClass, element)).collect(Collectors.toSet());
+    private <E extends Enum<E>> Set<E> convertFromStringSet(Set<String> stringSet, Class<E> enumClass) {
+        return stringSet.stream()
+                .map(element -> E.valueOf(enumClass, element))
+                .collect(Collectors.toSet());
     }
 
-    private <E extends Enum<E>> Set<String> convertFromEnumSet(Set<? extends Enum<E>> enumSet) {
-        return enumSet.stream().map(Enum::name).collect(Collectors.toSet());
+    private <E extends Enum<E>> Set<String> convertToStringSet(Set<? extends Enum<E>> enumSet) {
+        return enumSet.stream()
+                .map(Enum::name)
+                .collect(Collectors.toSet());
     }
+
 }

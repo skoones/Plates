@@ -36,4 +36,5 @@ public class Meal {
     @LazyCollection(LazyCollectionOption.FALSE)
     @Enumerated(value = EnumType.STRING)
     private Set<DietType> dietType;
+
 }

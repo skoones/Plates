@@ -13,9 +13,10 @@ public interface MealService {
 
     MealDto getMealById(Long id);
 
-    void updateMeal(MealDto mealDto);
+    void deleteMealById(Long mealId);
 
     void addMeal(MealDto mealDto);
 
-    void deleteMealById(Long mealId);
+    void updateMeal(MealDto mealDto);
+
 }

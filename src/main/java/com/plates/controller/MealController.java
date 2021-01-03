@@ -16,7 +16,7 @@ public class MealController {
     private final MealService mealService;
 
     @GetMapping("/")
-    List<MealDto> getMeals() {
+    List<MealDto> getAllMeals() {
         return mealService.getAllMeals();
     }
 
@@ -27,12 +27,12 @@ public class MealController {
     }
 
     @GetMapping("/{mealId}")
-    MealDto getMeal(@PathVariable Long mealId) {
+    MealDto getMealById(@PathVariable Long mealId) {
         return mealService.getMealById(mealId);
     }
 
     @DeleteMapping("/{mealId}")
-    void deleteMeal(@PathVariable Long mealId) {
+    void deleteMealById(@PathVariable Long mealId) {
         mealService.deleteMealById(mealId);
     }
 
@@ -45,4 +45,5 @@ public class MealController {
     void updateMeal(@RequestBody MealDto mealDto) {
         mealService.updateMeal(mealDto);
     }
+
 }

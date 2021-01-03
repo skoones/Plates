@@ -19,8 +19,8 @@ public class MealServiceImpl implements MealService {
 
     @Override
     public List<MealDto> getAllMeals() {
-
-        return mealRepository.findAll().stream()
+        return mealRepository.findAll()
+                .stream()
                 .map(MealDtoMapper::mapToDto)
                 .collect(Collectors.toList());
     }
@@ -32,7 +32,6 @@ public class MealServiceImpl implements MealService {
                 .filter(meal -> meal.getMealType().contains(type))
                 .map(MealDtoMapper::mapToDto)
                 .collect(Collectors.toList());
-
     }
 
     @Override
@@ -43,10 +42,8 @@ public class MealServiceImpl implements MealService {
     }
 
     @Override
-    public void updateMeal(MealDto mealDto) {
-        mealRepository.findById(mealDto.getId()).orElseThrow();
-
-        mealRepository.save(MealDtoMapper.mapFromDto(mealDto));
+    public void deleteMealById(Long mealId) {
+        mealRepository.deleteById(mealId);
     }
 
     @Override
@@ -55,7 +52,9 @@ public class MealServiceImpl implements MealService {
     }
 
     @Override
-    public void deleteMealById(Long mealId) {
-        mealRepository.deleteById(mealId);
+    public void updateMeal(MealDto mealDto) {
+        mealRepository.findById(mealDto.getId()).orElseThrow();
+        mealRepository.save(MealDtoMapper.mapFromDto(mealDto));
     }
+
 }
