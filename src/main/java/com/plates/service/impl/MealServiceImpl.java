@@ -36,7 +36,7 @@ public class MealServiceImpl implements MealService {
     }
 
     @Override
-    public MealDto getMealDetailsById(Long id) {
+    public MealDto getMealById(Long id) {
         return mealRepository.findById(id)
                 .map(MealDtoMapper::mapToDto)
                 .orElseThrow();

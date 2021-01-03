@@ -26,23 +26,23 @@ public class MealController {
         return mealService.getMealsByMealType(mealType);
     }
 
-    @GetMapping("/meal/{meal_id}")
-    MealDto getMealDetails(@PathVariable("meal_id") Long mealId) {
-        return mealService.getMealDetailsById(mealId);
+    @GetMapping("/{mealId}")
+    MealDto getMeal(@PathVariable Long mealId) {
+        return mealService.getMealById(mealId);
     }
 
-    @PutMapping("/update")
-    void updateMealDetails(@RequestBody MealDto mealDto) {
-        mealService.updateMeal(mealDto);
+    @DeleteMapping("/{mealId}")
+    void deleteMeal(@PathVariable Long mealId) {
+        mealService.deleteMealById(mealId);
     }
 
-    @PostMapping("/add")
+    @PostMapping("/")
     void addMeal(@RequestBody MealDto mealDto) {
         mealService.addMeal(mealDto);
     }
 
-    @DeleteMapping("/delete/{meal_id}")
-    void deleteMeal(@PathVariable("meal_id") Long mealId) {
-        mealService.deleteMealById(mealId);
+    @PutMapping("/")
+    void updateMeal(@RequestBody MealDto mealDto) {
+        mealService.updateMeal(mealDto);
     }
 }

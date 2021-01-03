@@ -11,7 +11,7 @@ public interface MealService {
 
     List<MealDto> getMealsByMealType(MealType type);
 
-    MealDto getMealDetailsById(Long id);
+    MealDto getMealById(Long id);
 
     void updateMeal(MealDto mealDto);
 
