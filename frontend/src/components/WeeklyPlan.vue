@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container fluid>
-      <!-- TODO - zrobić wewnątrz wiersze z dialogami - każdy wiersz będzie z góry określony, do jakiego posiłku należy -->
+      <!-- TODO - w jaki sposób reprezentować posiłki? form, button, nazwa posiłku + button?-->
       <v-layout justify-center row>
         <!--          <v-card v-for="day in daysOfWeek"-->
         <!--                  :key="day">-->
@@ -45,7 +45,13 @@
               tile
               width="100%"
           >
-            <v-card-title class="text-subtitle-1 grey--text text--darken-4">Breakfast</v-card-title>
+            <v-card-title class="text-subtitle-1 grey--text text--darken-4">
+              <v-btn elevation="3" outlined>
+                <v-icon>
+                  emoji_food_beverage
+                </v-icon>
+              </v-btn>
+            </v-card-title>
           </v-card>
         </v-flex>
       </v-layout>
