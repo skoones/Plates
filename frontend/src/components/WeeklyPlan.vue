@@ -1,0 +1,106 @@
+<template>
+  <div>
+    <v-container fluid>
+      <!-- TODO - zrobić wewnątrz wiersze z dialogami - każdy wiersz będzie z góry określony, do jakiego posiłku należy -->
+      <v-layout justify-center row>
+        <!--          <v-card v-for="day in daysOfWeek"-->
+        <!--                  :key="day">-->
+        <!--                    <div>{{ day }}</div>-->
+        <!--          </v-card>-->
+        <v-flex
+            :color="'grey darken-3'"
+            class="d-flex flex-row mt-6"
+            flat
+            tile
+            width="100%"
+        >
+          <v-card
+              v-for="day in daysOfWeek"
+              :key="day"
+              class="pt-3 pb-3"
+              elevation="3"
+              outlined
+              tile
+              width="100%"
+          >
+            <v-card-title class="text-h5 justify-center grey--text text--darken-4">{{ day }}</v-card-title>
+          </v-card>
+        </v-flex>
+      </v-layout>
+
+      <v-layout row>
+        <v-flex
+            :color="'grey darken-3'"
+            class="d-flex flex-row"
+            flat
+            tile
+            width="100%"
+        >
+          <v-card
+              v-for="day in daysOfWeek"
+              :key="day"
+              class="pt-3 pb-3"
+              elevation="3"
+              outlined
+              tile
+              width="100%"
+          >
+            <v-card-title class="text-subtitle-1 grey--text text--darken-4">Breakfast</v-card-title>
+          </v-card>
+        </v-flex>
+      </v-layout>
+
+      <v-layout row>
+        <v-flex
+            :color="'grey darken-3'"
+            class="d-flex flex-row"
+            flat
+            tile
+            width="100%"
+        >
+          <v-card
+              v-for="day in daysOfWeek"
+              :key="day"
+              class="pt-3 pb-3"
+              elevation="3"
+              outlined
+              tile
+              width="100%"
+          >
+            <v-card-title class="text-subtitle-1 grey--text text--darken-4">Snack</v-card-title>
+            <v-card-text>
+              <v-dialog max-width="600px">
+                <v-btn slot="activator" class="success" fab flat>
+                  <v-icon>add</v-icon>
+                </v-btn>
+              </v-dialog>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </div>
+</template>
+
+<script>
+
+export default {
+  name: "WeeklyPlan",
+
+  data: () => ({
+    daysOfWeek: [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday'
+    ]
+  })
+}
+</script>
+
+<style scoped>
+
+</style>
