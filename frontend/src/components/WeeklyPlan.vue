@@ -67,14 +67,14 @@
               tile
               width="100%"
           >
-            <v-card-title class="text-subtitle-1 grey--text text--darken-4">Snack</v-card-title>
-            <v-card-text>
+            <v-card-title class="text-subtitle-1 grey--text text--darken-4">
+              Snack
               <v-dialog max-width="600px">
-                <v-btn slot="activator" class="success" fab flat>
+                <v-btn slot="activator" class="secondary ml-5" fab flat small>
                   <v-icon>add</v-icon>
                 </v-btn>
               </v-dialog>
-            </v-card-text>
+            </v-card-title>
           </v-card>
         </v-flex>
       </v-layout>
