@@ -14,7 +14,7 @@
 </template>
 
 <script>
-// import MEAL_TYPE_TO_ICON from '../constants'
+import {MEAL_TYPE_TO_ICON} from '@/constants'
 
 export default {
   name: "PlanCell",
@@ -34,16 +34,11 @@ export default {
 
   data() {
     return {
-      MEAL_TYPE_TO_ICON: new Map([
-        ['breakfast', 'mdi-toaster'],
-        ['snack', 'mdi-food-apple'],
-        ['lunch', 'mdi-pasta'],
-        ['dinner', 'mdi-silverware']])
     }
   },
 
   created() {
-    this.mealIcon = this.MEAL_TYPE_TO_ICON.get(this.mealType);
+    this.mealIcon = MEAL_TYPE_TO_ICON.get(this.mealType);
   }
 }
 </script>

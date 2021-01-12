@@ -13,23 +13,20 @@
 
 <script>
 import DayOfWeek from "@/components/DayOfWeek";
+import {DAYS_OF_WEEK} from "@/constants";
 
 export default {
   name: "WeeklyPlan",
+
   components: {
     'day-of-week': DayOfWeek
   },
-  data: () => ({
-    daysOfWeek: [
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday',
-      'Sunday'
-    ]
-  })
+
+  data() {
+    return {
+      daysOfWeek: DAYS_OF_WEEK
+    }
+  }
 }
 </script>
 

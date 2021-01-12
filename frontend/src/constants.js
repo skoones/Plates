@@ -1,11 +1,15 @@
-const MEAL_TYPE_TO_ICON = new Map([
-    ['breakfast', 'emoji_food_beverage'],
-    ['snack', 'emoji_food_beverage'],
-    ['lunch', 'emoji_food_beverage'],
-    ['dinner', 'emoji_food_beverage']]);
+export const MEAL_TYPE_TO_ICON = new Map([
+    ['breakfast', 'mdi-toaster'],
+    ['snack', 'mdi-food-apple'],
+    ['lunch', 'mdi-pasta'],
+    ['dinner', 'mdi-silverware']]);
 
-export default {
-    constants: {
-        MEAL_TYPE_TO_ICON: MEAL_TYPE_TO_ICON
-    }
-}
+export const DAYS_OF_WEEK = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday'
+];
