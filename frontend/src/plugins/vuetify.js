@@ -14,7 +14,13 @@ export default new Vuetify({
                     darken3: '#4d8051',
                     darken4: '#39603b'
                 },
-                secondary: '#85d1ae',
+                secondary: {
+                    base: '#85d1ae',
+                    darken1: '#6cad8f',
+                    darken2: '#5b937a',
+                    darken3: '#426d59',
+                    darken4: '#36594a'
+                },
                 accent: '#d185ce'
             }
         }
