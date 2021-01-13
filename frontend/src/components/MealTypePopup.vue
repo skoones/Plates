@@ -20,7 +20,7 @@
             {{ mealGroup }}
           </v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-select v-model="desiredDiets" :items="diets" class="mt-3" label="Filters" multiple>
+          <v-select v-model="desiredDiets" :items="diets" class="mt-3" label="Diet type" multiple>
           </v-select>
           <v-btn icon @click="showSearchBar = !showSearchBar">
             <v-icon>mdi-magnify</v-icon>
@@ -71,13 +71,13 @@ export default {
           mealName: 'Scrambled eggs',
           dietTypes: [
             'vegetarian',
-            'low calorie'
+            'low-calorie'
           ]
         },
         {
           mealName: 'Salmon sandwiches',
           dietTypes: [
-            'low calorie'
+            'low-calorie'
           ]
         },
         {
@@ -98,30 +98,18 @@ export default {
 
   computed: {
     filteredMealsByName() {
-      return this.filteredMealsByDiet.filter((meal) => {
-        return meal.mealName.toLowerCase().match(this.search.toLowerCase().trim());
-      });
+      return this.filteredMealsByDiet.filter(meal =>
+          meal.mealName.toLowerCase().match(this.search.toLowerCase().trim())
+      );
     },
     filteredMealsByDiet() {
-      return this.meals.filter((meal) => {
-        if (this.desiredDiets.length > 0) {
-          // console.log(meal.mealName)
-          console.log(this.desiredDiets.every((diet) => {
-            console.log(meal.mealName)
-            console.log("Deesired: " + this.desiredDiets)
-            console.log(meal.dietTypes)
-            meal.dietTypes.includes(diet);
-          }))
-          return this.desiredDiets.every((diet) => {
-            meal.dietTypes.includes(diet);
-            // console.log(meal.dietTypes.toString())
-            // console.log(diet)
-            // console.log(meal.dietTypes.includes(diet))
-          });
-        } else {
-          return true;
-        }
-      });
+      return this.meals.filter(meal => this.matchesAllDesiredDiets(meal));
+    }
+  },
+
+  methods: {
+    matchesAllDesiredDiets(meal) {
+      return this.desiredDiets.every(diet => meal.dietTypes.includes(diet));
     }
   },
 

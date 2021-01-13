@@ -26,7 +26,7 @@ export const DAILY_MEALS = [
 export const DIETS = [
     'vegetarian',
     'vegan',
-    'low calorie'
+    'low-calorie'
 ]
 
 export const MEAL_TYPE_TO_GROUP_NAME = new Map([
@@ -40,5 +40,5 @@ export const MEAL_TYPE_TO_GROUP_NAME = new Map([
 export const DIET_TYPE_TO_ICON = new Map([
     ['vegan', 'mdi-leaf'],
     ['vegetarian', 'mdi-food-steak-off'],
-    ['low calorie', 'mdi-feather']
+    ['low-calorie', 'mdi-feather']
 ])

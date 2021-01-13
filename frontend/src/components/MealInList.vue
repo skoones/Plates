@@ -6,7 +6,7 @@
         <v-spacer></v-spacer>
         <diet-icon v-if="isVegetarian" :diet-type="'vegetarian'"></diet-icon>
         <diet-icon v-if="isVegan" :diet-type="'vegan'"></diet-icon>
-        <diet-icon v-if="isLowCalorie" :diet-type="'low calorie'"></diet-icon>
+        <diet-icon v-if="isLowCalorie" :diet-type="'low-calorie'"></diet-icon>
       </v-card-title>
     </v-card>
   </div>
@@ -42,7 +42,7 @@ export default {
       return this.mealInfo.dietTypes.includes('vegetarian');
     },
     isLowCalorie() {
-      return this.mealInfo.dietTypes.includes('low calorie');
+      return this.mealInfo.dietTypes.includes('low-calorie');
     }
   }
 }
