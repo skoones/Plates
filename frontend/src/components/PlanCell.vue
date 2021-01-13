@@ -3,21 +3,19 @@
     <v-card class="pt-3 pb-3" elevation="3" height="100%" outlined tile width="100%">
       <v-card-title class="text-h5 justify-center grey--text text--darken-4">
         {{ dayOfWeek }}
-        <v-btn v-if="isMeal" :color="'primary darken-4'" elevation="3" icon outlined>
-          <v-icon>
-            {{ mealIcon }}
-          </v-icon>
-        </v-btn>
+        <meal-type-popup v-if="isMeal" :meal-type="mealType"></meal-type-popup>
       </v-card-title>
     </v-card>
   </v-flex>
 </template>
 
 <script>
-import {MEAL_TYPE_TO_ICON} from '@/constants'
+import MealTypePopup from "@/components/MealTypePopup";
 
 export default {
   name: "PlanCell",
+
+  components: {MealTypePopup},
 
   props: {
     isMeal: {
@@ -35,10 +33,6 @@ export default {
   data() {
     return {
     }
-  },
-
-  created() {
-    this.mealIcon = MEAL_TYPE_TO_ICON.get(this.mealType);
   }
 }
 </script>
