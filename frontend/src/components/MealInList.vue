@@ -4,9 +4,9 @@
       <v-card-title>
         {{ mealInfo.mealName }}
         <v-spacer></v-spacer>
-        <diet-icon v-if="mealInfo.isVegetarian" :diet-type="'vegetarian'"></diet-icon>
-        <diet-icon v-if="mealInfo.isVegan" :diet-type="'vegan'"></diet-icon>
-        <diet-icon v-if="mealInfo.isLowCalorie" :diet-type="'low calorie'"></diet-icon>
+        <diet-icon v-if="isVegetarian" :diet-type="'vegetarian'"></diet-icon>
+        <diet-icon v-if="isVegan" :diet-type="'vegan'"></diet-icon>
+        <diet-icon v-if="isLowCalorie" :diet-type="'low calorie'"></diet-icon>
       </v-card-title>
     </v-card>
   </div>
@@ -24,20 +24,25 @@ export default {
         type: String,
         required: true
       },
-      isVegetarian: {
-        type: Boolean
-      },
-      isVegan: {
-        type: Boolean
-      },
-      isLowCalorie: {
-        type: Boolean
+      dietTypes: {
+        type: Array
       }
     }
   },
 
   data() {
-    return {
+    return {}
+  },
+
+  computed: {
+    isVegan() {
+      return this.mealInfo.dietTypes.includes('vegan');
+    },
+    isVegetarian() {
+      return this.mealInfo.dietTypes.includes('vegetarian');
+    },
+    isLowCalorie() {
+      return this.mealInfo.dietTypes.includes('low calorie');
     }
   }
 }

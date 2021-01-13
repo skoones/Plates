@@ -69,27 +69,26 @@ export default {
       meals: [ // hardcoded for now, will be obtained via http request
         {
           mealName: 'Scrambled eggs',
-          isVegetarian: true,
-          isVegan: false,
-          isLowCalorie: true
+          dietTypes: [
+            'vegetarian',
+            'low calorie'
+          ]
         },
         {
           mealName: 'Salmon sandwiches',
-          isVegetarian: false,
-          isVegan: false,
-          isLowCalorie: true
+          dietTypes: [
+            'low calorie'
+          ]
         },
         {
           mealName: 'Spaghetti with spinach',
-          isVegetarian: true,
-          isVegan: false,
-          isLowCalorie: false
+          dietTypes: [
+            'vegetarian'
+          ]
         },
         {
           mealName: 'Cappricciosa omelette',
-          isVegetarian: false,
-          isVegan: false,
-          isLowCalorie: false
+          dietTypes: []
         }
       ],
       desiredDiets: [],
@@ -99,8 +98,29 @@ export default {
 
   computed: {
     filteredMealsByName() {
+      return this.filteredMealsByDiet.filter((meal) => {
+        return meal.mealName.toLowerCase().match(this.search.toLowerCase().trim());
+      });
+    },
+    filteredMealsByDiet() {
       return this.meals.filter((meal) => {
-        return meal.mealName.toLowerCase().startsWith(this.search.toLowerCase().trim());
+        if (this.desiredDiets.length > 0) {
+          // console.log(meal.mealName)
+          console.log(this.desiredDiets.every((diet) => {
+            console.log(meal.mealName)
+            console.log("Deesired: " + this.desiredDiets)
+            console.log(meal.dietTypes)
+            meal.dietTypes.includes(diet);
+          }))
+          return this.desiredDiets.every((diet) => {
+            meal.dietTypes.includes(diet);
+            // console.log(meal.dietTypes.toString())
+            // console.log(diet)
+            // console.log(meal.dietTypes.includes(diet))
+          });
+        } else {
+          return true;
+        }
       });
     }
   },
