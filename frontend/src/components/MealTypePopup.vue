@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import {DIETS, MEAL_TYPE_TO_GROUP_NAME, MEAL_TYPE_TO_ICON} from '@/constants'
+import {DIETS, LOW_CALORIE, MEAL_TYPE_TO_GROUP_NAME, MEAL_TYPE_TO_ICON, VEGETARIAN} from '@/constants'
 import MealInList from "@/components/MealInList";
 
 export default {
@@ -70,20 +70,20 @@ export default {
         {
           mealName: 'Scrambled eggs',
           dietTypes: [
-            'vegetarian',
-            'low-calorie'
+            VEGETARIAN,
+            LOW_CALORIE
           ]
         },
         {
           mealName: 'Salmon sandwiches',
           dietTypes: [
-            'low-calorie'
+            LOW_CALORIE
           ]
         },
         {
           mealName: 'Spaghetti with spinach',
           dietTypes: [
-            'vegetarian'
+            VEGETARIAN
           ]
         },
         {

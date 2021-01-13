@@ -23,11 +23,15 @@ export const DAILY_MEALS = [
     'dinner'
 ];
 
+export const VEGETARIAN = 'vegetarian';
+export const VEGAN = 'vegan';
+export const LOW_CALORIE = 'low-calorie';
+
 export const DIETS = [
-    'vegetarian',
-    'vegan',
-    'low-calorie'
-]
+    VEGETARIAN,
+    VEGAN,
+    LOW_CALORIE
+];
 
 export const MEAL_TYPE_TO_GROUP_NAME = new Map([
     ['breakfast', 'Breakfasts'],
@@ -35,10 +39,10 @@ export const MEAL_TYPE_TO_GROUP_NAME = new Map([
     ['lunch', 'Lunches'],
     ['snack 2', 'Snacks'],
     ['dinner', 'Dinners']
-])
+]);
 
 export const DIET_TYPE_TO_ICON = new Map([
-    ['vegan', 'mdi-leaf'],
-    ['vegetarian', 'mdi-food-steak-off'],
-    ['low-calorie', 'mdi-feather']
-])
+    [VEGAN, 'mdi-leaf'],
+    [VEGETARIAN, 'mdi-food-steak-off'],
+    [LOW_CALORIE, 'mdi-feather']
+]);
