@@ -23,6 +23,12 @@ export const DAILY_MEALS = [
     'dinner'
 ];
 
+export const DIETS = [
+    'vegetarian',
+    'vegan',
+    'low calorie'
+]
+
 export const MEAL_TYPE_TO_GROUP_NAME = new Map([
     ['breakfast', 'Breakfasts'],
     ['snack 1', 'Snacks'],

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-dialog v-model="isDialogOpen" max-width="600" scrollable>
+    <v-dialog v-model="isDialogOpen" max-width="800" scrollable>
       <template #activator="{ on:dialog }">
         <v-tooltip top>
           <template #activator="{ on:tooltip }">
@@ -15,18 +15,20 @@
         </v-tooltip>
       </template>
       <v-card>
-        <v-toolbar class="primary mb-1" elevation="3">
+        <v-toolbar class="primary mb-1" elevation="3" height="70%">
           <v-toolbar-title>
             {{ mealGroup }}
           </v-toolbar-title>
           <v-spacer></v-spacer>
+          <v-select v-model="desiredDiets" :items="diets" class="mt-3" label="Filters" multiple>
+          </v-select>
           <v-btn icon @click="showSearchBar = !showSearchBar">
             <v-icon>mdi-magnify</v-icon>
           </v-btn>
           <v-text-field v-if="showSearchBar" v-model="search" class="mt-2" color="primary darken-3"
                         single-line></v-text-field>
         </v-toolbar>
-        <v-card-text style="height: 300px;">
+        <v-card-text style="height: 500px;">
           <v-container v-for="meal in filteredMealsByName" :key="meal.mealName">
             <meal-in-list :meal-info="meal"></meal-in-list>
           </v-container>
@@ -43,7 +45,7 @@
 </template>
 
 <script>
-import {MEAL_TYPE_TO_GROUP_NAME, MEAL_TYPE_TO_ICON} from '@/constants'
+import {DIETS, MEAL_TYPE_TO_GROUP_NAME, MEAL_TYPE_TO_ICON} from '@/constants'
 import MealInList from "@/components/MealInList";
 
 export default {
@@ -64,7 +66,7 @@ export default {
       },
       showSearchBar: false,
       search: '',
-      meals: [
+      meals: [ // hardcoded for now, will be obtained via http request
         {
           mealName: 'Scrambled eggs',
           isVegetarian: true,
@@ -89,7 +91,9 @@ export default {
           isVegan: false,
           isLowCalorie: false
         }
-      ]
+      ],
+      desiredDiets: [],
+      diets: DIETS
     }
   },
 
