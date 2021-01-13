@@ -4,41 +4,20 @@
       <v-card-title>
         {{ mealInfo.mealName }}
         <v-spacer></v-spacer>
-        <v-tooltip top>
-          <template v-slot:activator="{ on, attrs }">
-            <v-icon v-if="mealInfo.isVegetarian" v-bind="attrs" v-on="on" right>
-              {{ vegetarianIcon }}
-            </v-icon>
-          </template>
-          <span>vegetarian</span>
-        </v-tooltip>
-        <v-tooltip top>
-          <template v-slot:activator="{ on, attrs }">
-            <v-icon v-if="mealInfo.isVegan" v-bind="attrs" v-on="on">
-              {{ veganIcon }}
-            </v-icon>
-          </template>
-          <span>vegan</span>
-        </v-tooltip>
-        <v-tooltip top>
-          <template v-slot:activator="{ on, attrs }">
-            <v-icon v-if="mealInfo.isLowCalorie" v-bind="attrs" v-on="on">
-              {{ lowCalorieIcon }}
-            </v-icon>
-          </template>
-          <span>low calorie</span>
-        </v-tooltip>
+        <diet-icon v-if="mealInfo.isVegetarian" :diet-type="'vegetarian'"></diet-icon>
+        <diet-icon v-if="mealInfo.isVegan" :diet-type="'vegan'"></diet-icon>
+        <diet-icon v-if="mealInfo.isLowCalorie" :diet-type="'low calorie'"></diet-icon>
       </v-card-title>
     </v-card>
   </div>
 </template>
 
 <script>
-import {DIET_TYPE_TO_ICON} from "@/constants";
+import DietIcon from "@/components/DietIcon";
 
 export default {
   name: "MealInList",
-
+  components: {DietIcon},
   props: {
     mealInfo: {
       mealName: {
@@ -54,15 +33,11 @@ export default {
       isLowCalorie: {
         type: Boolean
       }
-
     }
   },
 
   data() {
     return {
-      vegetarianIcon: DIET_TYPE_TO_ICON.get('vegetarian'),
-      veganIcon: DIET_TYPE_TO_ICON.get('vegan'),
-      lowCalorieIcon: DIET_TYPE_TO_ICON.get('lowCalorie')
     }
   }
 }
