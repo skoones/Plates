@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container fluid>
+    <v-container class="mb-10">
       <!-- TODO - w jaki sposób reprezentować posiłki? form, button, nazwa posiłku + button?-->
       <v-layout justify-center row>
         <v-flex v-for="day in daysOfWeek" :key="day">

@@ -3,6 +3,9 @@
     <h1 class="text-center text-h2 grey--text text--darken-3 mb-5">Weekly plan</h1>
     <v-divider class="mb-5"></v-divider>
     <weekly-plan></weekly-plan>
+    <v-btn class="secondary" right>
+      Browse meals
+    </v-btn>
   </v-container>
 
 </template>

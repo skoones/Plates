@@ -5,7 +5,7 @@
         {{ dayOfWeek }}
         <meal-type-popup v-if="isMeal && !isMealChosen" :meal-type="mealType"
                          @chooseMeal="setMeal($event)"></meal-type-popup>
-        <meal-in-plan v-if="isMeal && isMealChosen" :meal="mealInfo"></meal-in-plan>
+        <meal-in-plan v-if="isMeal && isMealChosen" :meal="mealInfo" @deleteMeal="isMealChosen = false"></meal-in-plan>
       </v-card-title>
     </v-card>
   </v-flex>

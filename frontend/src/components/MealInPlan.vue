@@ -1,6 +1,14 @@
 <template>
   <div>
-    <v-card-text>{{ meal.mealName }}</v-card-text>
+    <v-card-text>
+      {{ meal.mealName }}
+      <v-btn icon @click="deleteMeal">
+        <v-icon>
+          mdi-trash-can
+        </v-icon>
+      </v-btn>
+    </v-card-text>
+
   </div>
 </template>
 
@@ -17,6 +25,12 @@ export default {
       dietTypes: {
         type: Array
       }
+    }
+  },
+
+  methods: {
+    deleteMeal() {
+      this.$emit('deleteMeal', this.meal)
     }
   }
 }
