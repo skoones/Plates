@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <v-card-text>
+    <v-card-text class="text-h6 text-wrap">
       {{ meal.mealName }}
       <v-btn icon @click="deleteMeal">
         <v-icon>
@@ -8,8 +7,6 @@
         </v-icon>
       </v-btn>
     </v-card-text>
-
-  </div>
 </template>
 
 <script>

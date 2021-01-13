@@ -1,14 +1,19 @@
 <template>
-  <v-flex :color="'grey darken-3'" class="d-flex flex-row" flat tile>
-    <v-card class="pt-3 pb-3" elevation="3" height="100%" outlined tile width="100%">
-      <v-card-title class="text-h5 justify-center grey--text text--darken-4">
-        {{ dayOfWeek }}
-        <meal-type-popup v-if="isMeal && !isMealChosen" :meal-type="mealType"
-                         @chooseMeal="setMeal($event)"></meal-type-popup>
-        <meal-in-plan v-if="isMeal && isMealChosen" :meal="mealInfo" @deleteMeal="isMealChosen = false"></meal-in-plan>
-      </v-card-title>
-    </v-card>
-  </v-flex>
+  <v-card elevation="3" outlined tile>
+    <v-card-title class="text-h5 justify-center">
+      <div v-if="isMeal">
+        <div v-if="isMealChosen">
+          <meal-in-plan :meal="mealInfo" class="mb-n2" @deleteMeal="isMealChosen = false"></meal-in-plan>
+        </div>
+        <div v-else>
+          <meal-type-popup :meal-type="mealType" class="pt-3 pb-3" @chooseMeal="setMeal($event)"></meal-type-popup>
+        </div>
+      </div>
+      <div v-else>
+        <span class="primary--text text--darken-3 font-weight-bold">{{ dayOfWeek }}</span>
+      </div>
+    </v-card-title>
+  </v-card>
 </template>
 
 <script>
