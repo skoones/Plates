@@ -1,8 +1,8 @@
 export const MEAL_TYPE_TO_ICON = new Map([
     ['breakfast', 'mdi-toaster'],
-    ['snack1', 'mdi-food-apple'],
+    ['snack 1', 'mdi-food-apple'],
     ['lunch', 'mdi-pasta'],
-    ['snack2', 'mdi-food-apple'],
+    ['snack 2', 'mdi-food-apple'],
     ['dinner', 'mdi-silverware']]);
 
 export const DAYS_OF_WEEK = [
@@ -17,16 +17,22 @@ export const DAYS_OF_WEEK = [
 
 export const DAILY_MEALS = [
     'breakfast',
-    'snack1',
+    'snack 1',
     'lunch',
-    'snack2',
+    'snack 2',
     'dinner'
 ];
 
 export const MEAL_TYPE_TO_GROUP_NAME = new Map([
     ['breakfast', 'Breakfasts'],
-    ['snack1', 'Snacks'],
+    ['snack 1', 'Snacks'],
     ['lunch', 'Lunches'],
-    ['snack2', 'Snacks'],
+    ['snack 2', 'Snacks'],
     ['dinner', 'Dinners']
+])
+
+export const DIET_TYPE_TO_ICON = new Map([
+    ['vegan', 'mdi-leaf'],
+    ['vegetarian', 'mdi-food-steak-off'],
+    ['lowCalorie', 'mdi-feather']
 ])
