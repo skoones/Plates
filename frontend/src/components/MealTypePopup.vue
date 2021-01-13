@@ -30,7 +30,7 @@
         </v-toolbar>
         <v-card-text style="height: 500px;">
           <v-container v-for="meal in filteredMealsByName" :key="meal.mealName">
-            <meal-in-list :meal-info="meal"></meal-in-list>
+            <meal-in-list :meal-info="meal" @chooseMeal="chooseMeal($event)"></meal-in-list>
           </v-container>
         </v-card-text>
         <v-divider></v-divider>
@@ -110,6 +110,10 @@ export default {
   methods: {
     matchesAllDesiredDiets(meal) {
       return this.desiredDiets.every(diet => meal.dietTypes.includes(diet));
+    },
+    chooseMeal(meal) {
+      this.isDialogOpen = false;
+      this.$emit('chooseMeal', meal);
     }
   },
 

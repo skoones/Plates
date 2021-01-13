@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card>
+    <v-card @click="chooseMeal">
       <v-card-title>
         {{ mealInfo.mealName }}
         <v-spacer></v-spacer>
@@ -18,7 +18,9 @@ import {LOW_CALORIE, VEGAN, VEGETARIAN} from "@/constants";
 
 export default {
   name: "MealInList",
+
   components: {DietIcon},
+
   props: {
     mealInfo: {
       mealName: {
@@ -48,6 +50,12 @@ export default {
     },
     isLowCalorie() {
       return this.mealInfo.dietTypes.includes(LOW_CALORIE);
+    }
+  },
+
+  methods: {
+    chooseMeal() {
+      this.$emit('chooseMeal', this.mealInfo);
     }
   }
 }
