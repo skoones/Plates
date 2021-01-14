@@ -46,7 +46,13 @@
 </template>
 
 <script>
-import {DIETS, MAP_MEAL_TYPE_TO_ENDPOINT, MEAL_TYPE_TO_GROUP_NAME, MEAL_TYPE_TO_ICON,} from '@/constants'
+import {
+  DIETS,
+  MAP_MEAL_TYPE_TO_ENDPOINT,
+  MAP_TO_DTO_DIET_TYPE,
+  MEAL_TYPE_TO_GROUP_NAME,
+  MEAL_TYPE_TO_ICON,
+} from '@/constants'
 import MealInList from "@/components/MealInList";
 import MealDataService from "@/services/MealDataService";
 
@@ -70,31 +76,7 @@ export default {
       },
       showSearchBar: false,
       search: '',
-      meals: [ // hardcoded for now, will be obtained via http request
-        // {
-        //   mealName: 'Scrambled eggs',
-        //   dietTypes: [
-        //     VEGETARIAN,
-        //     LOW_CALORIE
-        //   ]
-        // },
-        // {
-        //   mealName: 'Salmon sandwiches',
-        //   dietTypes: [
-        //     LOW_CALORIE
-        //   ]
-        // },
-        // {
-        //   mealName: 'Spaghetti with spinach',
-        //   dietTypes: [
-        //     VEGETARIAN
-        //   ]
-        // },
-        // {
-        //   mealName: 'Cappricciosa omelette',
-        //   dietTypes: []
-        // }
-      ],
+      meals: [],
       desiredDiets: [],
       diets: DIETS
     }
@@ -102,24 +84,18 @@ export default {
 
   computed: {
     filteredMealsByName() {
-      // if (!this.meals) {
-      //   return this.meals;
-      // }
       return this.filteredMealsByDiet.filter(meal =>
           meal.name.toLowerCase().match(this.search.toLowerCase().trim())
       );
     },
     filteredMealsByDiet() {
-      // if (!this.meals) {
-      //   return this.meals;
-      // }
       return this.meals.filter(meal => this.matchesAllDesiredDiets(meal));
     }
   },
 
   methods: {
     matchesAllDesiredDiets(meal) {
-      return this.desiredDiets.every(diet => meal.dietType.includes(diet));
+      return this.desiredDiets.every(diet => meal.dietType.includes(MAP_TO_DTO_DIET_TYPE.get(diet)));
     },
     chooseMeal(meal) {
       this.isDialogOpen = false;
