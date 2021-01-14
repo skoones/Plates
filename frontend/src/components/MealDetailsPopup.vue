@@ -17,19 +17,66 @@
           {{ mealInfo.mealName }}
         </v-card-title>
         <v-divider></v-divider>
-        <v-container>
-          <v-row :justify="'center'">
-            <v-col cols="12">
-              <v-textarea readonly>
-                {{ description }}
-              </v-textarea>
-            </v-col>
-          </v-row>
-        </v-container>
         <v-card-text>
-          <v-btn class="primary" @click="isDialogOpen = false">
-            Close
-          </v-btn>
+          <v-container>
+            <v-row>
+              <v-col cols="6">
+                <v-card>
+                  <v-list>
+                    <v-list-group>
+                      <template v-slot:activator>
+                        <v-list-item-content>
+                          <v-list-item-title v-text="'Meal types'"></v-list-item-title>
+                        </v-list-item-content>
+                      </template>
+                      <v-list-item v-for="meal in mealTypes" :key="meal">
+                        <v-list-item-content>
+                          <v-list-item-title v-text="meal"></v-list-item-title>
+                        </v-list-item-content>
+                      </v-list-item>
+                    </v-list-group>
+                  </v-list>
+                </v-card>
+              </v-col>
+              <v-col cols="6">
+                <v-card>
+                  <v-list>
+                    <v-list-group>
+                      <template v-slot:activator>
+                        <v-list-item-content>
+                          <v-list-item-title v-text="'Diet types'"></v-list-item-title>
+                        </v-list-item-content>
+                      </template>
+                      <v-list-item v-for="diet in dietTypes" :key="diet">
+                        <v-list-item-content>
+                          <v-list-item-title v-text="diet"></v-list-item-title>
+                        </v-list-item-content>
+                      </v-list-item>
+                    </v-list-group>
+                  </v-list>
+                </v-card>
+              </v-col>
+            </v-row>
+            <v-row :justify="'center'">
+              <v-col cols="12">
+                <v-card class="scroll" max-height="200px">
+                  <v-card-text class="grey--text text--darken-3">
+                    {{ description }}
+                  </v-card-text>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-container>
+          <v-container>
+            <v-row :justify="'space-between'">
+              <v-btn class="primary" @click="isDialogOpen = false">
+                Close
+              </v-btn>
+              <v-btn class="alert white--text">
+                Delete meal
+              </v-btn>
+            </v-row>
+          </v-container>
         </v-card-text>
       </v-card>
     </v-dialog>
@@ -39,7 +86,7 @@
 
 <script>
 import DietIcon from "@/components/DietIcon";
-import {LOW_CALORIE, VEGAN, VEGETARIAN} from "@/constants";
+import {BREAKFAST, LOW_CALORIE, LUNCH, VEGAN, VEGETARIAN} from "@/constants";
 
 export default {
   name: "MealDetailsPopup",
@@ -62,9 +109,15 @@ export default {
       vegetarian: VEGETARIAN,
       lowCalorie: LOW_CALORIE,
       isDialogOpen: false,
-      dietTypes: [],
-      mealTypes: [],
-      description: 'asd'
+      dietTypes: [
+        VEGAN,
+        VEGETARIAN
+      ],
+      mealTypes: [
+        BREAKFAST,
+        LUNCH
+      ],
+      description: 'yum'
     }
   },
 
@@ -90,5 +143,10 @@ export default {
 
 .btn-fix:hover::before {
   opacity: 0.08 !important;
+}
+
+/* TODO - maybe find a nicer way of doing this */
+.scroll {
+  overflow-y: scroll
 }
 </style>

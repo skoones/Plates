@@ -21,7 +21,8 @@ export default new Vuetify({
                     darken3: '#4d8051',
                     darken4: '#39603b'
                 },
-                accent: '#d185ce'
+                accent: '#d185ce',
+                alert: '#c62828'
             }
         }
     }
