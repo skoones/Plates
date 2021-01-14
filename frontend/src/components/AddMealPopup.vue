@@ -27,9 +27,18 @@
               </v-col>
             </v-row>
           </v-container>
-          <v-btn class="primary" @click="dialog = false">
-            Close
-          </v-btn>
+          <v-container>
+            <v-row :justify="'space-between'">
+              <v-btn class="primary" @click="dialog = false">
+                Close
+              </v-btn>
+              <v-btn class="primary">
+                Add meal
+              </v-btn>
+            </v-row>
+          </v-container>
+
+
         </v-card-text>
       </v-card>
     </v-dialog>

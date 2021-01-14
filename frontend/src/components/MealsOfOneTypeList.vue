@@ -20,8 +20,8 @@
       </v-toolbar>
       <v-card-text>
         <!--       <v-container v-for="meal in mealsOfType.meals" :key="meal.mealName">-->
-        <meal-in-list v-for="meal in mealsOfType.meals" :key="meal.mealName" :meal-info="meal"
-                      class="ma-3"></meal-in-list>
+        <meal-details-popup v-for="meal in mealsOfType.meals" :key="meal.mealName" :meal-info="meal"
+                            class="ma-3"></meal-details-popup>
         <!--       </v-container>-->
       </v-card-text>
 
@@ -32,12 +32,12 @@
 
 <script>
 import {DIETS, LOW_CALORIE, VEGETARIAN} from "@/constants";
-import MealInList from "@/components/MealInList";
+import MealDetailsPopup from "@/components/MealDetailsPopup";
 
 export default {
   name: "MealsOfOneTypeList",
 
-  components: {MealInList},
+  components: {MealDetailsPopup},
 
   props: {
     mealsOfType: {
