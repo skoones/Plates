@@ -20,7 +20,7 @@
       </v-toolbar>
       <v-card-text>
         <!--       <v-container v-for="meal in mealsOfType.meals" :key="meal.mealName">-->
-        <meal-details-popup v-for="meal in mealsOfType.meals" :key="meal.mealName" :meal-info="meal"
+        <meal-details-popup v-for="meal in filteredMealsByName" :key="meal.mealName" :meal-info="meal"
                             class="ma-3"></meal-details-popup>
         <!--       </v-container>-->
       </v-card-text>
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import {DIETS, LOW_CALORIE, VEGETARIAN} from "@/constants";
+import {DIETS} from "@/constants";
 import MealDetailsPopup from "@/components/MealDetailsPopup";
 
 export default {
@@ -46,25 +46,25 @@ export default {
     }
   },
 
-  computed: {},
+  computed: {
+    filteredMealsByName() {
+      return this.filteredMealsByDiet.filter(meal =>
+          meal.mealName.toLowerCase().match(this.search.toLowerCase().trim())
+      );
+    },
+    filteredMealsByDiet() {
+      return this.mealsOfType.meals.filter(meal => this.matchesAllDesiredDiets(meal));
+    }
+  },
+
+  methods: {
+    matchesAllDesiredDiets(meal) {
+      return this.desiredDiets.every(diet => meal.dietTypes.includes(diet));
+    }
+  },
 
   data() {
     return {
-      meals: [ // hardcoded for now
-        {
-          mealName: 'Scrambled eggs',
-          dietTypes: [
-            VEGETARIAN,
-            LOW_CALORIE
-          ]
-        },
-        {
-          mealName: 'Salmon sandwiches',
-          dietTypes: [
-            LOW_CALORIE
-          ]
-        },
-      ],
       desiredDiets: [],
       search: '',
       diets: DIETS,

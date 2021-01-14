@@ -20,7 +20,7 @@
         <v-card-text>
           <v-container>
             <v-row>
-              <v-col cols="6">
+              <v-col cols="4">
                 <v-card>
                   <v-list>
                     <v-list-group>
@@ -38,7 +38,7 @@
                   </v-list>
                 </v-card>
               </v-col>
-              <v-col cols="6">
+              <v-col cols="4">
                 <v-card>
                   <v-list>
                     <v-list-group>
@@ -50,6 +50,24 @@
                       <v-list-item v-for="diet in dietTypes" :key="diet">
                         <v-list-item-content>
                           <v-list-item-title v-text="diet"></v-list-item-title>
+                        </v-list-item-content>
+                      </v-list-item>
+                    </v-list-group>
+                  </v-list>
+                </v-card>
+              </v-col>
+              <v-col cols="4">
+                <v-card>
+                  <v-list>
+                    <v-list-group>
+                      <template v-slot:activator>
+                        <v-list-item-content>
+                          <v-list-item-title v-text="'Recipe link'"></v-list-item-title>
+                        </v-list-item-content>
+                      </template>
+                      <v-list-item>
+                        <v-list-item-content>
+                          <v-list-item-title v-text="recipeLink"></v-list-item-title>
                         </v-list-item-content>
                       </v-list-item>
                     </v-list-group>
@@ -72,7 +90,7 @@
               <v-btn class="primary" @click="isDialogOpen = false">
                 Close
               </v-btn>
-              <v-btn class="alert white--text">
+              <v-btn class="alert white--text" @click="isDialogOpen = false">
                 Delete meal
               </v-btn>
             </v-row>
@@ -109,6 +127,7 @@ export default {
       vegetarian: VEGETARIAN,
       lowCalorie: LOW_CALORIE,
       isDialogOpen: false,
+      recipeLink: 'trello.com/test',
       dietTypes: [
         VEGAN,
         VEGETARIAN
