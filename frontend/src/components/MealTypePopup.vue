@@ -5,8 +5,8 @@
         <v-tooltip top>
           <template #activator="{ on:tooltip }">
             <v-btn slot="activator" v-on="{...tooltip, ...dialog}" :color="'primary darken-4'" class="btn-fix"
-                   @click="getAllMeals"
-                   elevation="3" icon outlined>
+                   elevation="3"
+                   icon outlined @click="getMealsOfType(mealType)">
               <v-icon>
                 {{ mealIcon }}
               </v-icon>
@@ -30,7 +30,7 @@
                         single-line></v-text-field>
         </v-toolbar>
         <v-card-text style="height: 500px;">
-          <v-container v-for="meal in filteredMealsByName" :key="meal.mealName">
+          <v-container v-for="meal in filteredMealsByName" :key="meal.name">
             <meal-in-list :meal-info="meal" @chooseMeal="chooseMeal($event)"></meal-in-list>
           </v-container>
         </v-card-text>
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import {DIETS, LOW_CALORIE, MEAL_TYPE_TO_GROUP_NAME, MEAL_TYPE_TO_ICON, VEGETARIAN} from '@/constants'
+import {DIETS, MAP_MEAL_TYPE_TO_ENDPOINT, MEAL_TYPE_TO_GROUP_NAME, MEAL_TYPE_TO_ICON,} from '@/constants'
 import MealInList from "@/components/MealInList";
 import MealDataService from "@/services/MealDataService";
 
@@ -71,29 +71,29 @@ export default {
       showSearchBar: false,
       search: '',
       meals: [ // hardcoded for now, will be obtained via http request
-        {
-          mealName: 'Scrambled eggs',
-          dietTypes: [
-            VEGETARIAN,
-            LOW_CALORIE
-          ]
-        },
-        {
-          mealName: 'Salmon sandwiches',
-          dietTypes: [
-            LOW_CALORIE
-          ]
-        },
-        {
-          mealName: 'Spaghetti with spinach',
-          dietTypes: [
-            VEGETARIAN
-          ]
-        },
-        {
-          mealName: 'Cappricciosa omelette',
-          dietTypes: []
-        }
+        // {
+        //   mealName: 'Scrambled eggs',
+        //   dietTypes: [
+        //     VEGETARIAN,
+        //     LOW_CALORIE
+        //   ]
+        // },
+        // {
+        //   mealName: 'Salmon sandwiches',
+        //   dietTypes: [
+        //     LOW_CALORIE
+        //   ]
+        // },
+        // {
+        //   mealName: 'Spaghetti with spinach',
+        //   dietTypes: [
+        //     VEGETARIAN
+        //   ]
+        // },
+        // {
+        //   mealName: 'Cappricciosa omelette',
+        //   dietTypes: []
+        // }
       ],
       desiredDiets: [],
       diets: DIETS
@@ -102,37 +102,46 @@ export default {
 
   computed: {
     filteredMealsByName() {
+      // if (!this.meals) {
+      //   return this.meals;
+      // }
       return this.filteredMealsByDiet.filter(meal =>
-          meal.mealName.toLowerCase().match(this.search.toLowerCase().trim())
+          meal.name.toLowerCase().match(this.search.toLowerCase().trim())
       );
     },
     filteredMealsByDiet() {
+      // if (!this.meals) {
+      //   return this.meals;
+      // }
       return this.meals.filter(meal => this.matchesAllDesiredDiets(meal));
     }
   },
 
   methods: {
     matchesAllDesiredDiets(meal) {
-      return this.desiredDiets.every(diet => meal.dietTypes.includes(diet));
+      return this.desiredDiets.every(diet => meal.dietType.includes(diet));
     },
     chooseMeal(meal) {
       this.isDialogOpen = false;
       this.$emit('chooseMeal', meal);
     },
-    getAllMeals() {
-      MealDataService.getAllMeals()
+    getMealsOfType(type) {
+      MealDataService.getMealsOfType(MAP_MEAL_TYPE_TO_ENDPOINT.get(type))
           .then(response => {
-            console.log(response.data);
+            this.meals = response.data;
           })
           .catch(e => {
             console.log(e);
           });
     }
   },
-
   created() {
     this.mealIcon = MEAL_TYPE_TO_ICON.get(this.mealType);
     this.mealGroup = MEAL_TYPE_TO_GROUP_NAME.get(this.mealType);
+  },
+
+  mounted() {
+    this.getMealsOfType(this.mealType);
   }
 
 }

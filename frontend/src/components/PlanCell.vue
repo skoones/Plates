@@ -42,7 +42,7 @@ export default {
     return {
       isMealChosen: false,
       mealInfo: {
-        mealName: {
+        name: {
           type: String,
           required: true
         },
@@ -57,7 +57,6 @@ export default {
     setMeal(meal) {
       this.isMealChosen = true;
       this.mealInfo = meal;
-      console.log(meal.mealName);
     }
   }
 }

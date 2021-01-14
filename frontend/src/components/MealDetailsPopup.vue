@@ -111,7 +111,7 @@ export default {
 
   props: {
     mealInfo: {
-      mealName: {
+      name: {
         type: String,
         required: true
       }

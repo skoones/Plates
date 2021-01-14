@@ -1,6 +1,6 @@
 <template>
     <v-card-text class="text-h6 text-wrap">
-      {{ meal.mealName }}
+      {{ meal.name }}
       <v-btn icon @click="deleteMeal">
         <v-icon>
           mdi-trash-can
@@ -15,7 +15,7 @@ export default {
 
   props: {
     meal: {
-      mealName: {
+      name: {
         type: String,
         required: true
       },

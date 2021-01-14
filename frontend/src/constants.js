@@ -9,12 +9,34 @@ export const LUNCH = 'lunch';
 export const DINNER = 'dinner';
 export const SNACK = 'snack';
 
+export const MAP_TO_DTO_MEAL_TYPE = new Map([
+    [BREAKFAST, 'BREAKFAST'],
+    [SNACK, 'SNACK'],
+    [LUNCH, 'LUNCH'],
+    [DINNER, 'DINNER']
+]);
+
+export const MAP_TO_DTO_DIET_TYPE = new Map([
+    [VEGAN, 'VEGAN'],
+    [VEGETARIAN, 'VEGETARIAN'],
+    [LOW_CALORIE, 'LOW_CALORIE']
+]);
+
+export const MAP_MEAL_TYPE_TO_ENDPOINT = new Map([
+    [BREAKFAST, 'breakfast'],
+    [SNACK_1, 'snack'],
+    [SNACK_2, 'snack'],
+    [LUNCH, 'lunch'],
+    [DINNER, 'dinner']
+])
+
 export const MEAL_TYPE_TO_ICON = new Map([
     [BREAKFAST, 'mdi-toaster'],
     [SNACK_1, 'mdi-food-apple'],
     [LUNCH, 'mdi-pasta'],
     [SNACK_2, 'mdi-food-apple'],
-    [DINNER, 'mdi-silverware']]);
+    [DINNER, 'mdi-silverware']
+]);
 
 export const DAYS_OF_WEEK = [
     'Monday',
