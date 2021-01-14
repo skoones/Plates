@@ -19,10 +19,8 @@
 
       </v-toolbar>
       <v-card-text>
-        <!--       <v-container v-for="meal in mealsOfType.meals" :key="meal.mealName">-->
         <meal-details-popup v-for="meal in filteredMealsByName" :key="meal.mealName" :meal-info="meal"
                             class="ma-3"></meal-details-popup>
-        <!--       </v-container>-->
       </v-card-text>
 
 

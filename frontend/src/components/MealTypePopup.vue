@@ -5,6 +5,7 @@
         <v-tooltip top>
           <template #activator="{ on:tooltip }">
             <v-btn slot="activator" v-on="{...tooltip, ...dialog}" :color="'primary darken-4'" class="btn-fix"
+                   @click="getAllMeals"
                    elevation="3" icon outlined>
               <v-icon>
                 {{ mealIcon }}
@@ -47,10 +48,13 @@
 <script>
 import {DIETS, LOW_CALORIE, MEAL_TYPE_TO_GROUP_NAME, MEAL_TYPE_TO_ICON, VEGETARIAN} from '@/constants'
 import MealInList from "@/components/MealInList";
+import MealDataService from "@/services/MealDataService";
 
 export default {
   name: "MealTypePopup",
+
   components: {MealInList},
+
   props: {
     mealType: {
       type: String,
@@ -114,6 +118,15 @@ export default {
     chooseMeal(meal) {
       this.isDialogOpen = false;
       this.$emit('chooseMeal', meal);
+    },
+    getAllMeals() {
+      MealDataService.getAllMeals()
+          .then(response => {
+            console.log(response.data);
+          })
+          .catch(e => {
+            console.log(e);
+          });
     }
   },
 
