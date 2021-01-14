@@ -7,6 +7,7 @@ export const SNACK_1 = 'snack 1';
 export const SNACK_2 = 'snack 2';
 export const LUNCH = 'lunch';
 export const DINNER = 'dinner';
+export const SNACK = 'snack';
 
 export const MEAL_TYPE_TO_ICON = new Map([
     [BREAKFAST, 'mdi-toaster'],
@@ -25,6 +26,12 @@ export const DAYS_OF_WEEK = [
     'Sunday'
 ];
 
+export const MEAL_TYPES = [
+    BREAKFAST,
+    SNACK,
+    LUNCH,
+    DINNER
+]
 export const DAILY_MEALS = [
     BREAKFAST,
     SNACK_1,
