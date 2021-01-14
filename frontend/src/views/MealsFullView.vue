@@ -7,7 +7,7 @@
             Back
           </v-btn>
         </v-col>
-        <v-col align-self="center" cols="11">
+        <v-col align-self="center" cols="10">
           <v-toolbar class="primary">
             <v-spacer></v-spacer>
             <v-toolbar-title class="text-h5 font-weight-bold">
@@ -15,6 +15,9 @@
             </v-toolbar-title>
             <v-spacer></v-spacer>
           </v-toolbar>
+        </v-col>
+        <v-col :justify="'space-between'" cols="1">
+          <add-meal-popup></add-meal-popup>
         </v-col>
       </v-row>
     </v-container>
@@ -25,11 +28,12 @@
 <script>
 
 import MealAllLists from "@/components/MealAllLists";
+import AddMealPopup from "@/components/AddMealPopup";
 
 export default {
   name: "MealsFullView",
 
-  components: {MealAllLists},
+  components: {AddMealPopup, MealAllLists},
 
   data() {
     return {
