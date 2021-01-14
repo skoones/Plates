@@ -9,11 +9,11 @@ export const LUNCH = 'lunch';
 export const DINNER = 'dinner';
 export const SNACK = 'snack';
 
-export const MAP_TO_DTO_MEAL_TYPE = new Map([
-    [BREAKFAST, 'BREAKFAST'],
-    [SNACK, 'SNACK'],
-    [LUNCH, 'LUNCH'],
-    [DINNER, 'DINNER']
+export const MAP_FROM_GROUP_TO_MEAL_TYPE = new Map([
+    ['Breakfasts', BREAKFAST],
+    ['Snacks', SNACK],
+    ['Lunches', LUNCH],
+    ['Dinners', DINNER]
 ]);
 
 export const MAP_TO_DTO_DIET_TYPE = new Map([
@@ -26,6 +26,7 @@ export const MAP_MEAL_TYPE_TO_ENDPOINT = new Map([
     [BREAKFAST, 'breakfast'],
     [SNACK_1, 'snack'],
     [SNACK_2, 'snack'],
+    [SNACK, 'snack'],
     [LUNCH, 'lunch'],
     [DINNER, 'dinner']
 ])

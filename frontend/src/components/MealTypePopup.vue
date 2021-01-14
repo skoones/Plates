@@ -116,6 +116,7 @@ export default {
     this.mealGroup = MEAL_TYPE_TO_GROUP_NAME.get(this.mealType);
   },
 
+  // TODO - optimize
   mounted() {
     this.getMealsOfType(this.mealType);
   }

@@ -3,7 +3,7 @@
     <v-card outline raised>
       <v-toolbar class="primary darken-1 font-weight-bold">
         <v-toolbar-title>
-          {{ mealsOfType.groupName }}
+          {{ groupName }}
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-col cols="4">
@@ -19,7 +19,7 @@
 
       </v-toolbar>
       <v-card-text>
-        <meal-details-popup v-for="meal in filteredMealsByName" :key="meal.mealName" :meal-info="meal"
+        <meal-details-popup v-for="meal in filteredMealsByName" :key="meal.name" :meal-info="meal"
                             class="ma-3"></meal-details-popup>
       </v-card-text>
 
@@ -29,8 +29,9 @@
 </template>
 
 <script>
-import {DIETS} from "@/constants";
+import {DIETS, MAP_FROM_GROUP_TO_MEAL_TYPE, MAP_TO_DTO_DIET_TYPE} from "@/constants";
 import MealDetailsPopup from "@/components/MealDetailsPopup";
+import MealDataService from "@/services/MealDataService";
 
 export default {
   name: "MealsOfOneTypeList",
@@ -38,8 +39,8 @@ export default {
   components: {MealDetailsPopup},
 
   props: {
-    mealsOfType: {
-      type: Object,
+    groupName: {
+      type: String,
       required: true
     }
   },
@@ -47,17 +48,27 @@ export default {
   computed: {
     filteredMealsByName() {
       return this.filteredMealsByDiet.filter(meal =>
-          meal.mealName.toLowerCase().match(this.search.toLowerCase().trim())
+          meal.name.toLowerCase().match(this.search.toLowerCase().trim())
       );
     },
     filteredMealsByDiet() {
-      return this.mealsOfType.meals.filter(meal => this.matchesAllDesiredDiets(meal));
+      return this.meals.filter(meal => this.matchesAllDesiredDiets(meal));
     }
   },
 
   methods: {
     matchesAllDesiredDiets(meal) {
-      return this.desiredDiets.every(diet => meal.dietTypes.includes(diet));
+      return this.desiredDiets.every(diet => meal.dietType.includes(MAP_TO_DTO_DIET_TYPE.get(diet)));
+    },
+    getMealsOfType(type) {
+      MealDataService.getMealsOfType(type)
+          .then(response => {
+            console.log(response.data)
+            this.meals = response.data;
+          })
+          .catch(e => {
+            console.log(e);
+          });
     }
   },
 
@@ -66,8 +77,14 @@ export default {
       desiredDiets: [],
       search: '',
       diets: DIETS,
-      showSearchBar: false
+      showSearchBar: false,
+      mealType: MAP_FROM_GROUP_TO_MEAL_TYPE.get(this.groupName),
+      meals: []
     }
+  },
+
+  mounted() {
+    this.getMealsOfType(this.mealType);
   }
 }
 </script>

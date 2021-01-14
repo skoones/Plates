@@ -4,7 +4,7 @@
       <template v-slot:activator="{ on, attrs }">
         <v-card v-bind="attrs" v-on="on" class="btn-fix" @click="isDialogOpen = true">
           <v-card-title>
-            {{ mealInfo.mealName }}
+            {{ mealInfo.name }}
             <v-spacer></v-spacer>
             <diet-icon v-if="isVegetarian" :diet-type="vegetarian"></diet-icon>
             <diet-icon v-if="isVegan" :diet-type="vegan"></diet-icon>
@@ -14,7 +14,7 @@
       </template>
       <v-card>
         <v-card-title>
-          {{ mealInfo.mealName }}
+          {{ mealInfo.name }}
         </v-card-title>
         <v-divider></v-divider>
         <v-card-text>
@@ -29,7 +29,7 @@
                           <v-list-item-title v-text="'Meal types'"></v-list-item-title>
                         </v-list-item-content>
                       </template>
-                      <v-list-item v-for="meal in mealTypes" :key="meal">
+                      <v-list-item v-for="meal in mealInfo.mealType" :key="meal">
                         <v-list-item-content>
                           <v-list-item-title v-text="meal"></v-list-item-title>
                         </v-list-item-content>
@@ -47,7 +47,7 @@
                           <v-list-item-title v-text="'Diet types'"></v-list-item-title>
                         </v-list-item-content>
                       </template>
-                      <v-list-item v-for="diet in dietTypes" :key="diet">
+                      <v-list-item v-for="diet in mealInfo.dietType" :key="diet">
                         <v-list-item-content>
                           <v-list-item-title v-text="diet"></v-list-item-title>
                         </v-list-item-content>
@@ -67,7 +67,7 @@
                       </template>
                       <v-list-item>
                         <v-list-item-content>
-                          <v-list-item-title v-text="recipeLink"></v-list-item-title>
+                          <v-list-item-title v-text="mealInfo.recipeLink"></v-list-item-title>
                         </v-list-item-content>
                       </v-list-item>
                     </v-list-group>
@@ -79,7 +79,7 @@
               <v-col cols="12">
                 <v-card class="scroll" max-height="200px">
                   <v-card-text class="grey--text text--darken-3">
-                    {{ description }}
+                    {{ mealInfo.description }}
                   </v-card-text>
                 </v-card>
               </v-col>
@@ -104,17 +104,15 @@
 
 <script>
 import DietIcon from "@/components/DietIcon";
-import {BREAKFAST, LOW_CALORIE, LUNCH, VEGAN, VEGETARIAN} from "@/constants";
+import {LOW_CALORIE, MAP_TO_DTO_DIET_TYPE, VEGAN, VEGETARIAN} from "@/constants";
 
 export default {
   name: "MealDetailsPopup",
 
   props: {
     mealInfo: {
-      name: {
-        type: String,
-        required: true
-      }
+      type: Object,
+      required: true
     }
   },
 
@@ -127,28 +125,18 @@ export default {
       vegetarian: VEGETARIAN,
       lowCalorie: LOW_CALORIE,
       isDialogOpen: false,
-      recipeLink: 'trello.com/test',
-      dietTypes: [
-        VEGAN,
-        VEGETARIAN
-      ],
-      mealTypes: [
-        BREAKFAST,
-        LUNCH
-      ],
-      description: 'yum'
     }
   },
 
   computed: {
     isVegan() {
-      return this.mealInfo.dietTypes.includes(VEGAN);
+      return this.mealInfo.dietType.includes(MAP_TO_DTO_DIET_TYPE.get(VEGAN));
     },
     isVegetarian() {
-      return this.mealInfo.dietTypes.includes(VEGETARIAN);
+      return this.mealInfo.dietType.includes(MAP_TO_DTO_DIET_TYPE.get(VEGETARIAN));
     },
     isLowCalorie() {
-      return this.mealInfo.dietTypes.includes(LOW_CALORIE);
+      return this.mealInfo.dietType.includes(MAP_TO_DTO_DIET_TYPE.get(LOW_CALORIE));
     }
   },
 }
