@@ -67,7 +67,7 @@
                       </template>
                       <v-list-item>
                         <v-list-item-content>
-                          <v-list-item-title v-text="mealInfo.recipeLink"></v-list-item-title>
+                          <v-list-item-title class="list-wrap" v-text="mealInfo.recipeLink"></v-list-item-title>
                         </v-list-item-content>
                       </v-list-item>
                     </v-list-group>
@@ -161,6 +161,10 @@ export default {
 
 .btn-fix:hover::before {
   opacity: 0.08 !important;
+}
+
+.list-wrap {
+  white-space: normal;
 }
 
 /* TODO - maybe find a nicer way of doing this */
