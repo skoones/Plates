@@ -20,7 +20,7 @@
       </v-toolbar>
       <v-card-text>
         <meal-details-popup v-for="meal in filteredMealsByName" :key="meal.name" :meal-info="meal"
-                            class="ma-3"></meal-details-popup>
+                            class="ma-3" @deleteMeal="deleteMeal"></meal-details-popup>
       </v-card-text>
 
 
@@ -68,6 +68,9 @@ export default {
           .catch(e => {
             console.log(e);
           });
+    },
+    deleteMeal() {
+      this.$emit('deleteMeal');
     }
   },
 

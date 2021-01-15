@@ -10,6 +10,9 @@ class MealDataService {
         return http.post('meals/', meal);
     }
 
+    deleteMeal(id) {
+        return http.delete('meals/' + id)
+    }
 }
 
 export default new MealDataService();

@@ -90,7 +90,7 @@
               <v-btn class="primary" @click="isDialogOpen = false">
                 Close
               </v-btn>
-              <v-btn class="alert white--text" @click="isDialogOpen = false">
+              <v-btn class="alert white--text" @click="isDialogOpen = false; deleteMeal(mealInfo)">
                 Delete meal
               </v-btn>
             </v-row>
@@ -105,6 +105,7 @@
 <script>
 import DietIcon from "@/components/DietIcon";
 import {LOW_CALORIE, MAP_TO_DTO_DIET_TYPE, VEGAN, VEGETARIAN} from "@/constants";
+import MealDataService from "@/services/MealDataService";
 
 export default {
   name: "MealDetailsPopup",
@@ -139,6 +140,16 @@ export default {
       return this.mealInfo.dietType.includes(MAP_TO_DTO_DIET_TYPE.get(LOW_CALORIE));
     }
   },
+
+  methods: {
+    deleteMeal(meal) {
+      MealDataService.deleteMeal(meal.id)
+          .catch(e => {
+            console.log(e);
+          });
+      this.$emit('deleteMeal');
+    }
+  }
 }
 </script>
 

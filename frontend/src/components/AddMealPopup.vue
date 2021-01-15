@@ -13,11 +13,12 @@
         <v-card-text>
           <v-container>
             <v-row>
-              <v-col cols="12"> <!-- TODO - add checking if required is input -->
+              <v-col cols="12">
                 <v-text-field v-model="name" :rules="inputRules" label="Meal name" required></v-text-field>
               </v-col>
               <v-col cols="4">
-                <v-select v-model="selectedTypes" :items="mealTypes" label="Meal types" multiple></v-select>
+                <v-select v-model="selectedTypes" :items="mealTypes" :rules="inputRules" label="Meal types"
+                          multiple></v-select>
               </v-col>
               <v-col cols="4">
                 <v-select v-model="selectedDiets" :items="dietTypes" label="Diet types" multiple></v-select>

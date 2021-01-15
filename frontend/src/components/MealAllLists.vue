@@ -2,7 +2,8 @@
   <v-container fluid>
     <v-row>
       <v-col v-for="mealType in allMeals" :key="mealType.groupName">
-        <meals-of-one-type-list :group-name="mealType.groupName"></meals-of-one-type-list>
+        <meals-of-one-type-list :key="componentKey" :group-name="mealType.groupName"
+                                @deleteMeal="forceRerender"></meals-of-one-type-list>
       </v-col>
     </v-row>
   </v-container>
@@ -30,7 +31,14 @@ export default {
         {
           groupName: 'Dinners',
         }
-      ]
+      ],
+      componentKey: 0
+    }
+  },
+
+  methods: {
+    forceRerender() {
+      this.componentKey += 1;
     }
   }
 
