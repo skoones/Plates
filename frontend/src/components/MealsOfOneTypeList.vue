@@ -70,8 +70,12 @@ export default {
           });
     },
     deleteMeal() {
-      this.$emit('deleteMeal');
+      this.$forceUpdate();
+    },
+    loadMealList() {
+      this.getMealsOfType(this.mealType);
     }
+
   },
 
   data() {
@@ -86,7 +90,11 @@ export default {
   },
 
   mounted() {
-    this.getMealsOfType(this.mealType);
+    this.loadMealList();
+  },
+
+  updated() {
+    this.loadMealList();
   }
 }
 </script>
