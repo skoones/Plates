@@ -22,6 +22,13 @@ export const MAP_TO_DTO_DIET_TYPE = new Map([
     [LOW_CALORIE, 'LOW_CALORIE']
 ]);
 
+export const MAP_TO_DTO_MEAL_TYPE = new Map([
+    [BREAKFAST, 'BREAKFAST'],
+    [SNACK, 'SNACK'],
+    [LUNCH, 'LUNCH'],
+    [DINNER, 'DINNER']
+])
+
 export const MAP_MEAL_TYPE_TO_ENDPOINT = new Map([
     [BREAKFAST, 'breakfast'],
     [SNACK_1, 'snack'],

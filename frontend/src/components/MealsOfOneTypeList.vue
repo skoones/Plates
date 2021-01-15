@@ -63,7 +63,6 @@ export default {
     getMealsOfType(type) {
       MealDataService.getMealsOfType(type)
           .then(response => {
-            console.log(response.data)
             this.meals = response.data;
           })
           .catch(e => {

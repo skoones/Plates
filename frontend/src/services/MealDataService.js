@@ -6,6 +6,10 @@ class MealDataService {
         return http.get('meals/type/' + type)
     }
 
+    addMeal(meal) {
+        return http.post('meals/', meal);
+    }
+
 }
 
 export default new MealDataService();
