@@ -41,7 +41,7 @@
               <v-col cols="4">
                 <v-card>
                   <v-list>
-                    <v-list-group>
+                    <v-list-group v-if="mealInfo.dietTypes">
                       <template v-slot:activator>
                         <v-list-item-content>
                           <v-list-item-title v-text="'Diet types'"></v-list-item-title>
@@ -52,6 +52,13 @@
                           <v-list-item-title v-text="diet"></v-list-item-title>
                         </v-list-item-content>
                       </v-list-item>
+                    </v-list-group>
+                    <v-list-group v-else>
+                      <template v-slot:activator>
+                        <v-list-item-content>
+                          <v-list-item-title v-text="'Diet types'"></v-list-item-title>
+                        </v-list-item-content>
+                      </template>
                     </v-list-group>
                   </v-list>
                 </v-card>

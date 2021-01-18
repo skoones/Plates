@@ -14,11 +14,16 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field v-model="name" :rules="inputRules" label="Meal name" required></v-text-field>
+                <v-form>
+                  <v-text-field ref="mealName" v-model="name" :rules="inputRules" label="Meal name"
+                                required></v-text-field>
+                </v-form>
               </v-col>
               <v-col cols="4">
-                <v-select v-model="selectedTypes" :items="mealTypes" :rules="inputRules" label="Meal types"
-                          multiple></v-select>
+                <v-form>
+                  <v-select ref="meals" v-model="selectedTypes" :items="mealTypes" :rules="inputRules"
+                            label="Meal types" multiple></v-select>
+                </v-form>
               </v-col>
               <v-col cols="4">
                 <v-select v-model="selectedDiets" :items="dietTypes" label="Diet types" multiple></v-select>
@@ -74,23 +79,33 @@ export default {
 
   methods: {
     saveMeal() {
-      this.createDtoDietTypes();
-      this.createDtoMealTypes();
-      let meal = {
-        name: this.name,
-        description: this.description,
-        recipeLink: this.recipeLink,
-        mealType: this.selectedTypes,
-        dietType: this.selectedDiets,
-      };
+      if (this.$refs.mealName.validate() && this.$refs.meals.validate()) {
+        this.createDtoDietTypes();
+        this.createDtoMealTypes();
+        let meal = {
+          name: this.name,
+          description: this.description,
+          recipeLink: this.recipeLink,
+          mealType: this.selectedTypes,
+          dietType: this.selectedDiets,
+        };
 
-      MealDataService.addMeal(meal)
-          .then(response => {
-            console.log(response.data)
-          })
-          .catch(e => {
-            console.log(e);
-          });
+        MealDataService.addMeal(meal)
+            .then(response => {
+              console.log(response.data)
+            })
+            .catch(e => {
+              console.log(e);
+            });
+        this.resetInput();
+      }
+    },
+    resetInput() {
+      this.name = '';
+      this.selectedTypes = [];
+      this.selectedDiets = [];
+      this.recipeLink = '';
+      this.description = '';
     },
     createDtoMealTypes() {
       this.selectedTypes = this.selectedTypes.map(type => MAP_TO_DTO_MEAL_TYPE.get(type));
