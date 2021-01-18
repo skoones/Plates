@@ -46,8 +46,6 @@
               </v-btn>
             </v-row>
           </v-container>
-
-
         </v-card-text>
       </v-card>
     </v-dialog>
@@ -97,6 +95,7 @@ export default {
             .catch(e => {
               console.log(e);
             });
+        this.$emit('changeMeal', this.selectedTypes);
         this.resetInput();
       }
     },

@@ -2,18 +2,24 @@
   <v-container fluid>
     <v-row>
       <v-col v-for="mealType in allMeals" :key="mealType.groupName">
-        <meals-of-one-type-list :group-name="mealType.groupName"></meals-of-one-type-list>
+        <meals-of-one-type-list :key="componentKey" :group-name="mealType.groupName"
+                                @changeMeal="rerender"></meals-of-one-type-list>
       </v-col>
     </v-row>
   </v-container>
 </template>
 <script>
 import MealsOfOneTypeList from "@/components/MealsOfOneTypeList";
+import {EventBus} from "@/constants";
 
 export default {
   name: "MealAllLists",
 
   components: {MealsOfOneTypeList},
+
+  props: {
+    bus: {}
+  },
 
   data() {
     return {
@@ -31,8 +37,22 @@ export default {
           groupName: 'Dinners',
         }
       ],
+      componentKey: 0
     }
   },
+
+  methods: {
+    rerender() {
+      this.componentKey += 1;
+    }
+  },
+
+  created() {
+    EventBus.$on('reloadLists', () => {
+      console.log('change')
+      this.rerender();
+    });
+  }
 }
 </script>
 

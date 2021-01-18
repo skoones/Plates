@@ -1,3 +1,5 @@
+import Vue from "vue";
+
 export const VEGETARIAN = 'vegetarian';
 export const VEGAN = 'vegan';
 export const LOW_CALORIE = 'low-calorie';
@@ -89,3 +91,5 @@ export const DIET_TYPE_TO_ICON = new Map([
     [VEGETARIAN, 'mdi-food-steak-off'],
     [LOW_CALORIE, 'mdi-feather']
 ]);
+
+export const EventBus = new Vue();

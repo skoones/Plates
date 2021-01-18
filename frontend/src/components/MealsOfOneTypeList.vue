@@ -56,6 +56,17 @@ export default {
     }
   },
 
+  data() {
+    return {
+      desiredDiets: [],
+      search: '',
+      diets: DIETS,
+      showSearchBar: false,
+      mealType: MAP_FROM_GROUP_TO_MEAL_TYPE.get(this.groupName),
+      meals: []
+    }
+  },
+
   methods: {
     matchesAllDesiredDiets(meal) {
       return this.desiredDiets.every(diet => meal.dietType.includes(MAP_TO_DTO_DIET_TYPE.get(diet)));
@@ -70,32 +81,24 @@ export default {
           });
     },
     deleteMeal() {
-      this.$forceUpdate();
+      // this.loadMealList();
+      // this.$forceUpdate();
+      this.$emit('changeMeal');
     },
     loadMealList() {
       this.getMealsOfType(this.mealType);
     }
-
   },
 
-  data() {
-    return {
-      desiredDiets: [],
-      search: '',
-      diets: DIETS,
-      showSearchBar: false,
-      mealType: MAP_FROM_GROUP_TO_MEAL_TYPE.get(this.groupName),
-      meals: []
-    }
-  },
 
   created() {
     this.loadMealList();
   },
 
-  updated() {
-    this.loadMealList();
-  }
+  // beforeUpdate() {
+  //   // this.loadMealList();
+  //   console.log('tf')
+  // }
 }
 </script>
 

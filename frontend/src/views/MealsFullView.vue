@@ -17,11 +17,11 @@
           </v-toolbar>
         </v-col>
         <v-col :justify="'space-between'" cols="1">
-          <add-meal-popup></add-meal-popup>
+          <add-meal-popup @changeMeal="changeLists($event)"></add-meal-popup>
         </v-col>
       </v-row>
     </v-container>
-    <meal-all-lists></meal-all-lists>
+    <meal-all-lists ref="mealLists"></meal-all-lists>
   </div>
 </template>
 
@@ -29,6 +29,7 @@
 
 import MealAllLists from "@/components/MealAllLists";
 import AddMealPopup from "@/components/AddMealPopup";
+import {EventBus} from "@/constants";
 
 export default {
   name: "MealsFullView",
@@ -43,6 +44,12 @@ export default {
         lunches: [],
         dinners: []
       }
+    }
+  },
+
+  methods: {
+    changeLists(types) {
+      EventBus.$emit('reloadLists', types);
     }
   }
 }
