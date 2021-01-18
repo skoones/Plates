@@ -41,7 +41,7 @@
               <v-col cols="4">
                 <v-card>
                   <v-list>
-                    <v-list-group v-if="mealInfo.dietTypes">
+                    <v-list-group v-if="mealInfo.dietType">
                       <template v-slot:activator>
                         <v-list-item-content>
                           <v-list-item-title v-text="'Diet types'"></v-list-item-title>
