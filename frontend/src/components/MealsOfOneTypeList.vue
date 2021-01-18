@@ -81,8 +81,6 @@ export default {
           });
     },
     deleteMeal() {
-      // this.loadMealList();
-      // this.$forceUpdate();
       this.$emit('changeMeal');
     },
     loadMealList() {
@@ -93,12 +91,7 @@ export default {
 
   created() {
     this.loadMealList();
-  },
-
-  // beforeUpdate() {
-  //   // this.loadMealList();
-  //   console.log('tf')
-  // }
+  }
 }
 </script>
 

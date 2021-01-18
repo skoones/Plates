@@ -17,10 +17,6 @@ export default {
 
   components: {MealsOfOneTypeList},
 
-  props: {
-    bus: {}
-  },
-
   data() {
     return {
       allMeals: [
@@ -49,7 +45,6 @@ export default {
 
   created() {
     EventBus.$on('reloadLists', () => {
-      console.log('change')
       this.rerender();
     });
   }
