@@ -10,26 +10,32 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Tests mapping between Meal object and its data transfer object.
+ */
 class MealDtoMapperTest {
 
     private static final Meal TEST_MEAL = Meal.builder()
             .id(1L)
-            .name("szakszuka pyszna")
-            .description("exquisite jedzonko")
-            .recipeLink("www.pysznejedzonko.com")
+            .name("szakszuka")
+            .description("świetne jedzenie")
+            .recipeLink("www.pyszne.com")
             .dietType(Set.of(DietType.VEGETARIAN))
             .mealType(Set.of(MealType.BREAKFAST, MealType.LUNCH))
             .build();
 
     private static final MealDto TEST_MEAL_DTO = MealDto.builder()
             .id(1L)
-            .name("szakszuka pyszna")
-            .description("exquisite jedzonko")
-            .recipeLink("www.pysznejedzonko.com")
+            .name("szakszuka")
+            .description("świetne jedzenie")
+            .recipeLink("www.pyszne.com")
             .dietType(Set.of("VEGETARIAN"))
             .mealType(Set.of("BREAKFAST", "LUNCH"))
             .build();
 
+    /**
+     * Checks if mapping from Meal to its data transfer object is correct.
+     */
     @Test
     public void shouldMapEntityToDto() {
         // given
@@ -47,6 +53,9 @@ class MealDtoMapperTest {
         assertEquals(Set.of("BREAKFAST", "LUNCH"), mealDto.getMealType());
     }
 
+    /**
+     * Checks if mapping from data transfer object representing Meal to Meal is correct.
+     */
     @Test
     public void shouldMapDtoToEntity() {
         // given

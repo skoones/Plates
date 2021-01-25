@@ -7,6 +7,9 @@ import lombok.EqualsAndHashCode;
 
 import java.util.Set;
 
+/**
+ * Represents a data transfer object for Meal in order to permit communication with frontend.
+ */
 @Data
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)

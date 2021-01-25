@@ -9,9 +9,18 @@ import lombok.experimental.UtilityClass;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Enables conversion between Meal and its data transfer object representation.
+ */
 @UtilityClass
 public class MealDtoMapper {
 
+    /**
+     * Converts Meal object to its data transfer object representation.
+     *
+     * @param meal The Meal object to be converted.
+     * @return Data transfer object representation of the Meal object.
+     */
     public MealDto mapToDto(Meal meal) {
         return MealDto.builder()
                 .id(meal.getId())
@@ -23,6 +32,12 @@ public class MealDtoMapper {
                 .build();
     }
 
+    /**
+     * Converts Meal data transfer object to its Meal representation.
+     *
+     * @param mealDto The data transfer object to be converted.
+     * @return An object of the Meal class representing the same meal as the data transfer object.
+     */
     public Meal mapFromDto(MealDto mealDto) {
         return Meal.builder()
                 .id(mealDto.getId())

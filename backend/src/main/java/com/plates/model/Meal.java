@@ -7,6 +7,10 @@ import org.hibernate.annotations.LazyCollectionOption;
 import javax.persistence.*;
 import java.util.Set;
 
+
+/**
+ * Represents a meal that we want to store in our database.
+ */
 @Entity
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
