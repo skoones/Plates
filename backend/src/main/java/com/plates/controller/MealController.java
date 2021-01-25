@@ -25,7 +25,7 @@ public class MealController {
      * @return List of all meals in the database.
      */
     @GetMapping("/")
-    List<MealDto> getAllMeals() {
+    public List<MealDto> getAllMeals() {
         return mealService.getAllMeals();
     }
 
@@ -36,7 +36,7 @@ public class MealController {
      * @return List of all meals of a specific type (i. e. time of day, like breakfast).
      */
     @GetMapping("/type/{type}")
-    List<MealDto> getMealsByMealType(@PathVariable String type) {
+    public List<MealDto> getMealsByMealType(@PathVariable String type) {
         MealType mealType = MealType.valueOf(type.toUpperCase());
         return mealService.getMealsByMealType(mealType);
     }
@@ -48,7 +48,7 @@ public class MealController {
      * @return A meal of a given id.
      */
     @GetMapping("/{mealId}")
-    MealDto getMealById(@PathVariable Long mealId) {
+    public MealDto getMealById(@PathVariable Long mealId) {
         return mealService.getMealById(mealId);
     }
 
@@ -58,7 +58,7 @@ public class MealController {
      * @param mealId Id of the meal we want to delete.
      */
     @DeleteMapping("/{mealId}")
-    void deleteMealById(@PathVariable Long mealId) {
+    public void deleteMealById(@PathVariable Long mealId) {
         mealService.deleteMealById(mealId);
     }
 
@@ -68,7 +68,7 @@ public class MealController {
      * @param mealDto Dto representing the meal we want to add to the database.
      */
     @PostMapping("/")
-    void addMeal(@RequestBody MealDto mealDto) {
+    public void addMeal(@RequestBody MealDto mealDto) {
         mealService.addMeal(mealDto);
     }
 
@@ -78,7 +78,7 @@ public class MealController {
      * @param mealDto Dto representing the meal we want to update.
      */
     @PutMapping("/")
-    void updateMeal(@RequestBody MealDto mealDto) {
+    public void updateMeal(@RequestBody MealDto mealDto) {
         mealService.updateMeal(mealDto);
     }
 
