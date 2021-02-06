@@ -111,7 +111,7 @@
 
 <script>
 import DietIcon from "@/components/DietIcon";
-import {LOW_CALORIE, MAP_TO_DTO_DIET_TYPE, VEGAN, VEGETARIAN} from "@/constants";
+import {LOW_CALORIE, VEGAN, VEGETARIAN} from "@/constants";
 import MealDataService from "@/services/MealDataService";
 
 export default {
@@ -138,13 +138,13 @@ export default {
 
   computed: {
     isVegan() {
-      return this.mealInfo.dietType.includes(MAP_TO_DTO_DIET_TYPE.get(VEGAN));
+      return this.mealInfo.dietType.includes(VEGAN);
     },
     isVegetarian() {
-      return this.mealInfo.dietType.includes(MAP_TO_DTO_DIET_TYPE.get(VEGETARIAN));
+      return this.mealInfo.dietType.includes(VEGETARIAN);
     },
     isLowCalorie() {
-      return this.mealInfo.dietType.includes(MAP_TO_DTO_DIET_TYPE.get(LOW_CALORIE));
+      return this.mealInfo.dietType.includes(LOW_CALORIE);
     }
   },
 

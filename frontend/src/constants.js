@@ -2,7 +2,7 @@ import Vue from "vue";
 
 export const VEGETARIAN = 'vegetarian';
 export const VEGAN = 'vegan';
-export const LOW_CALORIE = 'low-calorie';
+export const LOW_CALORIE = 'low_calorie';
 
 export const BREAKFAST = 'breakfast';
 export const SNACK_1 = 'snack 1';
@@ -17,19 +17,6 @@ export const MAP_FROM_GROUP_TO_MEAL_TYPE = new Map([
     ['Lunches', LUNCH],
     ['Dinners', DINNER]
 ]);
-
-export const MAP_TO_DTO_DIET_TYPE = new Map([
-    [VEGAN, 'VEGAN'],
-    [VEGETARIAN, 'VEGETARIAN'],
-    [LOW_CALORIE, 'LOW_CALORIE']
-]);
-
-export const MAP_TO_DTO_MEAL_TYPE = new Map([
-    [BREAKFAST, 'BREAKFAST'],
-    [SNACK, 'SNACK'],
-    [LUNCH, 'LUNCH'],
-    [DINNER, 'DINNER']
-])
 
 export const MAP_MEAL_TYPE_TO_ENDPOINT = new Map([
     [BREAKFAST, 'breakfast'],

@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import {DIETS, MAP_TO_DTO_DIET_TYPE, MAP_TO_DTO_MEAL_TYPE, MEAL_TYPES} from "@/constants";
+import {DIETS, MEAL_TYPES} from "@/constants";
 import MealDataService from "@/services/MealDataService";
 
 export default {
@@ -78,8 +78,6 @@ export default {
   methods: {
     saveMeal() {
       if (this.$refs.mealName.validate() && this.$refs.meals.validate()) {
-        this.createDtoDietTypes();
-        this.createDtoMealTypes();
         let meal = {
           name: this.name,
           description: this.description,
@@ -102,12 +100,6 @@ export default {
       this.selectedDiets = [];
       this.recipeLink = '';
       this.description = '';
-    },
-    createDtoMealTypes() {
-      this.selectedTypes = this.selectedTypes.map(type => MAP_TO_DTO_MEAL_TYPE.get(type));
-    },
-    createDtoDietTypes() {
-      this.selectedDiets = this.selectedDiets.map(diet => MAP_TO_DTO_DIET_TYPE.get(diet));
     }
   }
 }

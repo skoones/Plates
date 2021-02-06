@@ -36,6 +36,7 @@ public class MealDtoMapper {
 
     private <E extends Enum<E>> Set<E> convertFromStringSet(Set<String> stringSet, Class<E> enumClass) {
         return stringSet.stream()
+                .map(String::toUpperCase)
                 .map(element -> E.valueOf(enumClass, element))
                 .collect(Collectors.toSet());
     }
@@ -43,6 +44,7 @@ public class MealDtoMapper {
     private <E extends Enum<E>> Set<String> convertToStringSet(Set<? extends Enum<E>> enumSet) {
         return enumSet.stream()
                 .map(Enum::name)
+                .map(String::toLowerCase)
                 .collect(Collectors.toSet());
     }
 

@@ -46,13 +46,7 @@
 </template>
 
 <script>
-import {
-  DIETS,
-  MAP_MEAL_TYPE_TO_ENDPOINT,
-  MAP_TO_DTO_DIET_TYPE,
-  MEAL_TYPE_TO_GROUP_NAME,
-  MEAL_TYPE_TO_ICON,
-} from '@/constants'
+import {DIETS, MAP_MEAL_TYPE_TO_ENDPOINT, MEAL_TYPE_TO_GROUP_NAME, MEAL_TYPE_TO_ICON,} from '@/constants'
 import MealInList from "@/components/MealInList";
 import MealDataService from "@/services/MealDataService";
 
@@ -95,7 +89,7 @@ export default {
 
   methods: {
     matchesAllDesiredDiets(meal) {
-      return this.desiredDiets.every(diet => meal.dietType.includes(MAP_TO_DTO_DIET_TYPE.get(diet)));
+      return this.desiredDiets.every(diet => meal.dietType.includes(diet));
     },
     chooseMeal(meal) {
       this.isDialogOpen = false;
