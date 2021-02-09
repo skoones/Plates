@@ -2,7 +2,8 @@
   <div>
     <v-dialog v-model="isDialogOpen" max-width="600px" persistent>
       <template v-slot:activator="{ on, attrs }">
-        <v-btn v-bind="attrs" v-on="on" class="primary mt-auto mb-auto ml-3" x-large @click="isDialogOpen = true">
+        <v-btn v-bind="attrs" v-blur v-on="on" class="primary mt-auto mb-auto ml-3" x-large
+               @click="isDialogOpen = true">
           Add meal
         </v-btn>
       </template>
