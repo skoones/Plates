@@ -2,7 +2,7 @@
   <div>
     <v-dialog v-model="isDialogOpen" max-width="800px">
       <template v-slot:activator="{ on, attrs }">
-        <v-card v-bind="attrs" v-on="on" class="btn-fix" @click="isDialogOpen = true">
+        <v-card v-bind="attrs" v-on="on" class="card-fix" @click="isDialogOpen = true">
           <v-card-title>
             {{ mealInfo.name }}
             <v-spacer></v-spacer>
@@ -162,11 +162,11 @@ export default {
 
 <style scoped>
 /* solves vuetify bug with focus staying on button for too long */
-.btn-fix:focus::before {
+.card-fix:focus::before {
   opacity: 0 !important;
 }
 
-.btn-fix:hover::before {
+.card-fix:hover::before {
   opacity: 0.08 !important;
 }
 
