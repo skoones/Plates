@@ -84,7 +84,7 @@
             </v-row>
             <v-row :justify="'center'">
               <v-col cols="12">
-                <v-card class="scroll" max-height="200px">
+                <v-card max-height="200px">
                   <v-card-text class="grey--text text--darken-3">
                     {{ mealInfo.description }}
                   </v-card-text>
@@ -174,8 +174,4 @@ export default {
   white-space: normal;
 }
 
-/* TODO - maybe find a nicer way of doing this */
-.scroll {
-  overflow-y: scroll
-}
 </style>
