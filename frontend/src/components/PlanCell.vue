@@ -2,7 +2,7 @@
   <v-card elevation="3" height="10vh" outlined tile>
     <v-card-title class="text-h5 justify-center">
       <div v-if="isMeal">
-        <div v-if="isMealChosen">
+        <div v-if="isMealChosen" class="mx-n10">
           <meal-in-plan :meal="mealInfo" @deleteMeal="isMealChosen = false"></meal-in-plan>
         </div>
         <div v-else>

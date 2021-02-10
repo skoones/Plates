@@ -1,6 +1,7 @@
 <template>
   <div>
-    <v-dialog v-model="isDialogOpen" max-width="600px" persistent>
+    <v-dialog v-model="isDialogOpen" max-width="600px" persistent @keydown.enter="saveMeal()"
+              @keydown.esc="isDialogOpen = false">
       <template v-slot:activator="{ on, attrs }">
         <v-btn v-bind="attrs" v-blur v-on="on" class="primary mt-auto mb-auto ml-3" x-large
                @click="isDialogOpen = true">
@@ -42,7 +43,7 @@
               <v-btn class="primary" @click="isDialogOpen = false">
                 Close
               </v-btn>
-              <v-btn class="primary" @click="saveMeal(); isDialogOpen = false">
+              <v-btn class="primary" @click="saveMeal()">
                 Add meal
               </v-btn>
             </v-row>
@@ -76,9 +77,15 @@ export default {
     }
   },
 
+  computed: {
+    isCorrectMeal() {
+      return this.$refs.mealName.validate() && this.$refs.meals.validate();
+    }
+  },
+
   methods: {
     saveMeal() {
-      if (this.$refs.mealName.validate() && this.$refs.meals.validate()) {
+      if (this.isCorrectMeal) {
         let meal = {
           name: this.name,
           description: this.description,
@@ -93,6 +100,9 @@ export default {
             });
         this.$emit('changeMeal', this.selectedTypes);
         this.resetInput();
+        this.isDialogOpen = false;
+      } else {
+        alert("Please fill out the required fields.");
       }
     },
     resetInput() {
