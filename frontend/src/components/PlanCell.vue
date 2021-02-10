@@ -1,9 +1,9 @@
 <template>
-  <v-card elevation="3" outlined tile>
+  <v-card elevation="3" height="10vh" outlined tile>
     <v-card-title class="text-h5 justify-center">
       <div v-if="isMeal">
         <div v-if="isMealChosen">
-          <meal-in-plan :meal="mealInfo" class="mb-n2 d-inline-flex" @deleteMeal="isMealChosen = false"></meal-in-plan>
+          <meal-in-plan :meal="mealInfo" @deleteMeal="isMealChosen = false"></meal-in-plan>
         </div>
         <div v-else>
           <meal-type-popup :meal-type="mealType" class="pt-3 pb-3" @chooseMeal="setMeal($event)"></meal-type-popup>
