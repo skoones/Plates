@@ -74,7 +74,7 @@
                       </template>
                       <v-list-item>
                         <v-list-item-content>
-                          <v-list-item-title class="list-wrap" v-text="mealInfo.recipeLink"></v-list-item-title>
+                          <v-list-item-title class="list-wrap" v-html="linkToRecipe"></v-list-item-title>
                         </v-list-item-content>
                       </v-list-item>
                     </v-list-group>
@@ -133,6 +133,7 @@ export default {
       vegetarian: VEGETARIAN,
       lowCalorie: LOW_CALORIE,
       isDialogOpen: false,
+      linkToRecipe: "<a href='" + this.mealInfo.recipeLink + "'>" + this.mealInfo.recipeLink + "</a>",
     }
   },
 
@@ -161,7 +162,7 @@ export default {
 </script>
 
 <style scoped>
-/* solves vuetify bug with focus staying on button for too long */
+/* solves vuetify bug with focus staying on card for too long */
 .card-fix:focus::before {
   opacity: 0 !important;
 }

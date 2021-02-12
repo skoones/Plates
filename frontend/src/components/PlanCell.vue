@@ -10,7 +10,9 @@
         </div>
       </div>
       <div v-else>
-        <span class="primary--text text--darken-3 font-weight-bold">{{ dayOfWeek }}</span>
+        <v-container>
+          <span class="primary--text text--darken-3 font-weight-bold">{{ dayOfWeek }}</span>
+        </v-container>
       </div>
     </v-card-title>
   </v-card>
