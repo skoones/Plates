@@ -3,8 +3,12 @@
     <v-dialog v-model="isDialogOpen" max-width="600px" persistent @keydown.enter="doAction()"
               @keydown.esc="isDialogOpen = false">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn v-bind="attrs" v-blur v-on="on" :class="buttonColor" class="mt-auto mb-auto ml-3" normal
-               @click="isDialogOpen = true">
+        <v-btn v-if="action === 'Add'" v-bind="attrs" v-blur v-on="on" :class="buttonColor" class="mt-auto mb-auto ml-3"
+               x-large @click="isDialogOpen = true">
+          {{ action }} meal
+        </v-btn>
+        <v-btn v-else v-bind="attrs" v-blur v-on="on" :class="buttonColor"
+               class="mt-auto mb-auto ml-3" @click="isDialogOpen = true">
           {{ action }} meal
         </v-btn>
       </template>
@@ -60,7 +64,7 @@ import {DIETS, MEAL_TYPES} from "@/constants";
 import MealDataService from "@/services/MealDataService";
 
 export default {
-  name: "UpdateOrAddMeal",
+  name: "UpdateOrAddMealPopup",
 
   data() {
     return {

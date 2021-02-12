@@ -97,14 +97,8 @@
               <v-btn class="primary" @click="isDialogOpen = false">
                 Close
               </v-btn>
-              <!--              <v-dialog v-model="isUpdatingOpen" max-width="800px">-->
-              <!--                <template v-slot:activator="{ on, attrs }">-->
-              <!--                  <v-btn v-bind="attrs" v-on="on" class="primary darken-1" @click="isUpdatingOpen = true">-->
-              <!--                    Update meal-->
-              <!--                  </v-btn>-->
-              <!--                </template>-->
-              <update-or-add-meal :action="'Add'" :button-color="'primary'"></update-or-add-meal>
-              <!--              </v-dialog>-->
+              <update-or-add-meal-popup :action="'Update'"
+                                        :button-color="'primary darken-1'"></update-or-add-meal-popup>
               <v-btn class="alert white--text" @click="isDialogOpen = false; deleteMeal(mealInfo)">
                 Delete meal
               </v-btn>
@@ -121,7 +115,7 @@
 import DietIcon from "@/components/DietIcon";
 import {LOW_CALORIE, VEGAN, VEGETARIAN} from "@/constants";
 import MealDataService from "@/services/MealDataService";
-import UpdateOrAddMeal from "@/components/UpdateOrAddMeal";
+import UpdateOrAddMealPopup from "@/components/UpdateOrAddMealPopup";
 
 export default {
   name: "MealDetailsPopup",
@@ -133,7 +127,7 @@ export default {
     }
   },
 
-  components: {UpdateOrAddMeal, DietIcon},
+  components: {UpdateOrAddMealPopup, DietIcon},
 
   // extract code below to mixin!!!
   data() {
@@ -142,7 +136,6 @@ export default {
       vegetarian: VEGETARIAN,
       lowCalorie: LOW_CALORIE,
       isDialogOpen: false,
-      isUpdatingOpen: false,
       linkToRecipe: "<a href='" + this.mealInfo.recipeLink + "'>" + this.mealInfo.recipeLink + "</a>"
     }
   },
