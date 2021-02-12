@@ -14,7 +14,7 @@
       </template>
       <v-card>
         <v-card-title>
-          Add meal
+          {{ action }} meal
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -48,7 +48,7 @@
                 Close
               </v-btn>
               <v-btn class="primary" @click="doAction()">
-                Add meal
+                {{ action }} meal
               </v-btn>
             </v-row>
           </v-container>
