@@ -22,12 +22,16 @@
               <v-col cols="12">
                 <v-form>
                   <v-text-field ref="mealName" v-model="name" :rules="inputRules" label="Meal name"
+                                v-if="action === 'Add'" required></v-text-field>
+                  <v-text-field v-else ref="mealName" v-model="name" label="Meal name"
                                 required></v-text-field>
                 </v-form>
               </v-col>
               <v-col cols="4">
                 <v-form>
                   <v-select ref="meals" v-model="selectedTypes" :items="mealTypes" :rules="inputRules"
+                            v-if="action === 'Add'" label="Meal types" multiple></v-select>
+                  <v-select v-else ref="meals" v-model="selectedTypes" :items="mealTypes"
                             label="Meal types" multiple></v-select>
                 </v-form>
               </v-col>
@@ -83,6 +87,10 @@ export default {
   },
 
   props: {
+    mealInfo: {
+      type: Object,
+      required: false
+    },
     action: {
       type: String,
       required: true
@@ -100,17 +108,17 @@ export default {
 
   methods: {
     doAction() {
+      let element;
+      let meal = {
+        name: this.name,
+        description: this.description,
+        recipeLink: this.recipeLink,
+        mealType: this.selectedTypes,
+        dietType: this.selectedDiets,
+      };
       switch (this.action) {
         case 'Add':
           if (this.isCorrectMeal) {
-            let meal = {
-              name: this.name,
-              description: this.description,
-              recipeLink: this.recipeLink,
-              mealType: this.selectedTypes,
-              dietType: this.selectedDiets,
-            };
-
             MealDataService.addMeal(meal)
                 .catch(e => {
                   console.log(e);
@@ -123,6 +131,19 @@ export default {
           }
           break;
         case 'Update':
+          for (element in meal) {
+            if (meal[element].length !== 0) {
+              this.mealInfo[element] = meal[element];
+              console.log(this.mealInfo);
+            }
+          }
+          MealDataService.updateMeal(this.mealInfo)
+              .catch(e => {
+                console.log(e);
+              });
+          this.$emit('changeMeal', this.selectedTypes);
+          this.resetInput();
+          this.isDialogOpen = false;
           break;
         default:
           console.log('Invalid action');

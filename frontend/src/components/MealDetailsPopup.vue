@@ -98,7 +98,8 @@
                 Close
               </v-btn>
               <update-or-add-meal-popup :action="'Update'"
-                                        :button-color="'primary darken-1'"></update-or-add-meal-popup>
+                                        :button-color="'primary darken-1'"
+                                        :meal-info="mealInfo"></update-or-add-meal-popup>
               <v-btn class="alert white--text" @click="isDialogOpen = false; deleteMeal(mealInfo)">
                 Delete meal
               </v-btn>
