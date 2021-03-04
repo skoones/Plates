@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+    plates-postgres:
+            image: "postgres:alpine"
+            environment:
+                - POSTGRES_USER=plates
+                - POSTGRES_PASSWORD=plates
+            container_name: plates-postgres
+            #ports: 
+                #- "5555:5432"
+    plates-frontend:
+        build:
+            context: ./frontend
+        ports:
+            - "4050:4050"
+            
+    plates-backend:
+        build: 
+            context: ./backend
+        ports:
+            - "8090:8090"
+        environment:
+            - DATABASE=plates-postgres
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://plates-postgres:5432/plates
+            - SPRING_DATASOURCE_USERNAME=plates
+            - SPRING_DATASOURCE_PASSWORD=plates
+            - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    
+            
