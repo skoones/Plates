@@ -2,7 +2,7 @@
   <div>
     <v-dialog v-model="isDialogOpen" max-width="800px">
       <template v-slot:activator="{ on, attrs }">
-        <v-card v-bind="attrs" v-on="on" class="btn-fix" @click="isDialogOpen = true">
+        <v-card v-bind="attrs" v-on="on" class="card-fix" @click="isDialogOpen = true">
           <v-card-title>
             {{ mealInfo.name }}
             <v-spacer></v-spacer>
@@ -74,7 +74,7 @@
                       </template>
                       <v-list-item>
                         <v-list-item-content>
-                          <v-list-item-title class="list-wrap" v-text="mealInfo.recipeLink"></v-list-item-title>
+                          <v-list-item-title class="list-wrap" v-html="linkToRecipe"></v-list-item-title>
                         </v-list-item-content>
                       </v-list-item>
                     </v-list-group>
@@ -84,7 +84,7 @@
             </v-row>
             <v-row :justify="'center'">
               <v-col cols="12">
-                <v-card class="scroll" max-height="200px">
+                <v-card max-height="200px">
                   <v-card-text class="grey--text text--darken-3">
                     {{ mealInfo.description }}
                   </v-card-text>
@@ -97,6 +97,9 @@
               <v-btn class="primary" @click="isDialogOpen = false">
                 Close
               </v-btn>
+              <update-or-add-meal-popup :action="'Update'"
+                                        :button-color="'primary darken-1'"
+                                        :meal-info="mealInfo"></update-or-add-meal-popup>
               <v-btn class="alert white--text" @click="isDialogOpen = false; deleteMeal(mealInfo)">
                 Delete meal
               </v-btn>
@@ -111,8 +114,9 @@
 
 <script>
 import DietIcon from "@/components/DietIcon";
-import {LOW_CALORIE, MAP_TO_DTO_DIET_TYPE, VEGAN, VEGETARIAN} from "@/constants";
+import {LOW_CALORIE, VEGAN, VEGETARIAN} from "@/constants";
 import MealDataService from "@/services/MealDataService";
+import UpdateOrAddMealPopup from "@/components/UpdateOrAddMealPopup";
 
 export default {
   name: "MealDetailsPopup",
@@ -124,7 +128,7 @@ export default {
     }
   },
 
-  components: {DietIcon},
+  components: {UpdateOrAddMealPopup, DietIcon},
 
   // extract code below to mixin!!!
   data() {
@@ -133,18 +137,19 @@ export default {
       vegetarian: VEGETARIAN,
       lowCalorie: LOW_CALORIE,
       isDialogOpen: false,
+      linkToRecipe: "<a href='" + this.mealInfo.recipeLink + "'>" + this.mealInfo.recipeLink + "</a>"
     }
   },
 
   computed: {
     isVegan() {
-      return this.mealInfo.dietType.includes(MAP_TO_DTO_DIET_TYPE.get(VEGAN));
+      return this.mealInfo.dietType.includes(VEGAN);
     },
     isVegetarian() {
-      return this.mealInfo.dietType.includes(MAP_TO_DTO_DIET_TYPE.get(VEGETARIAN));
+      return this.mealInfo.dietType.includes(VEGETARIAN);
     },
     isLowCalorie() {
-      return this.mealInfo.dietType.includes(MAP_TO_DTO_DIET_TYPE.get(LOW_CALORIE));
+      return this.mealInfo.dietType.includes(LOW_CALORIE);
     }
   },
 
@@ -161,12 +166,12 @@ export default {
 </script>
 
 <style scoped>
-/* solves vuetify bug with focus staying on button for too long */
-.btn-fix:focus::before {
+/* solves vuetify bug with focus staying on card for too long */
+.card-fix:focus::before {
   opacity: 0 !important;
 }
 
-.btn-fix:hover::before {
+.card-fix:hover::before {
   opacity: 0.08 !important;
 }
 
@@ -174,8 +179,4 @@ export default {
   white-space: normal;
 }
 
-/* TODO - maybe find a nicer way of doing this */
-.scroll {
-  overflow-y: scroll
-}
 </style>

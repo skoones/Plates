@@ -4,9 +4,10 @@
       <template #activator="{ on:dialog }">
         <v-tooltip top>
           <template #activator="{ on:tooltip }">
-            <v-btn slot="activator" v-on="{...tooltip, ...dialog}" :color="'primary darken-4'" class="btn-fix"
+            <v-btn slot="activator" v-blur v-on="{...tooltip, ...dialog}"
                    elevation="3"
-                   icon outlined @click="getMealsOfType(mealType)">
+                   :color="'primary darken-4'" icon outlined
+                   @click="getMealsOfType(mealType)">
               <v-icon>
                 {{ mealIcon }}
               </v-icon>
@@ -36,7 +37,7 @@
         </v-card-text>
         <v-divider></v-divider>
         <v-card-actions>
-          <v-btn color="primary darken-2" text @click="isDialogOpen = false">
+          <v-btn color="primary darken-2" text @click="isDialogOpen = false;">
             Close
           </v-btn>
         </v-card-actions>
@@ -46,13 +47,7 @@
 </template>
 
 <script>
-import {
-  DIETS,
-  MAP_MEAL_TYPE_TO_ENDPOINT,
-  MAP_TO_DTO_DIET_TYPE,
-  MEAL_TYPE_TO_GROUP_NAME,
-  MEAL_TYPE_TO_ICON,
-} from '@/constants'
+import {DIETS, MAP_MEAL_TYPE_TO_ENDPOINT, MEAL_TYPE_TO_GROUP_NAME, MEAL_TYPE_TO_ICON,} from '@/constants'
 import MealInList from "@/components/MealInList";
 import MealDataService from "@/services/MealDataService";
 
@@ -95,7 +90,7 @@ export default {
 
   methods: {
     matchesAllDesiredDiets(meal) {
-      return this.desiredDiets.every(diet => meal.dietType.includes(MAP_TO_DTO_DIET_TYPE.get(diet)));
+      return this.desiredDiets.every(diet => meal.dietType.includes(diet));
     },
     chooseMeal(meal) {
       this.isDialogOpen = false;
@@ -119,18 +114,11 @@ export default {
   // TODO - optimize
   mounted() {
     this.getMealsOfType(this.mealType);
-  }
+  },
 
 }
 </script>
 
 <style scoped>
-/* solves vuetify bug with focus staying on button for too long */
-.btn-fix:focus::before {
-  opacity: 0 !important;
-}
 
-.btn-fix:hover::before {
-  opacity: 0.08 !important;
-}
 </style>

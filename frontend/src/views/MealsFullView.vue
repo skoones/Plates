@@ -17,7 +17,8 @@
           </v-toolbar>
         </v-col>
         <v-col :justify="'space-between'" cols="1">
-          <add-meal-popup @changeMeal="changeLists($event)"></add-meal-popup>
+          <update-or-add-meal-popup :action="'Add'" :button-color="'primary'"
+                                    @changeMeal="changeLists($event)"></update-or-add-meal-popup>
         </v-col>
       </v-row>
     </v-container>
@@ -28,13 +29,13 @@
 <script>
 
 import MealAllLists from "@/components/MealAllLists";
-import AddMealPopup from "@/components/AddMealPopup";
 import {EventBus} from "@/constants";
+import UpdateOrAddMealPopup from "@/components/UpdateOrAddMealPopup";
 
 export default {
   name: "MealsFullView",
 
-  components: {AddMealPopup, MealAllLists},
+  components: {UpdateOrAddMealPopup, MealAllLists},
 
   data() {
     return {

@@ -6,6 +6,14 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 Vue.config.productionTip = false
 
+// fixes vuetify behavior of buttons not losing focus after closing popup
+Vue.directive('blur', {
+  inserted: function (el) {
+    // noinspection JSUnresolvedFunction
+    el.onfocus = (ev) => ev.target.blur()
+  }
+});
+
 new Vue({
   vuetify,
   router,

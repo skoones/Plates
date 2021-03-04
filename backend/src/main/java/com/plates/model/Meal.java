@@ -23,6 +23,7 @@ public class Meal {
     @EqualsAndHashCode.Include
     private String name;
 
+    @Column(length = 1024)
     private String description;
 
     private String recipeLink;

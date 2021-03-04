@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import {DIETS, MAP_FROM_GROUP_TO_MEAL_TYPE, MAP_TO_DTO_DIET_TYPE} from "@/constants";
+import {DIETS, MAP_FROM_GROUP_TO_MEAL_TYPE} from "@/constants";
 import MealDetailsPopup from "@/components/MealDetailsPopup";
 import MealDataService from "@/services/MealDataService";
 
@@ -69,7 +69,7 @@ export default {
 
   methods: {
     matchesAllDesiredDiets(meal) {
-      return this.desiredDiets.every(diet => meal.dietType.includes(MAP_TO_DTO_DIET_TYPE.get(diet)));
+      return this.desiredDiets.every(diet => meal.dietType.includes(diet));
     },
     getMealsOfType(type) {
       MealDataService.getMealsOfType(type)

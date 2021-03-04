@@ -17,33 +17,33 @@ public class MealController {
     private final MealService mealService;
 
     @GetMapping("/")
-    List<MealDto> getAllMeals() {
+    public List<MealDto> getAllMeals() {
         return mealService.getAllMeals();
     }
 
     @GetMapping("/type/{type}")
-    List<MealDto> getMealsByMealType(@PathVariable String type) {
+    public List<MealDto> getMealsByMealType(@PathVariable String type) {
         MealType mealType = MealType.valueOf(type.toUpperCase());
         return mealService.getMealsByMealType(mealType);
     }
 
     @GetMapping("/{mealId}")
-    MealDto getMealById(@PathVariable Long mealId) {
+    public MealDto getMealById(@PathVariable Long mealId) {
         return mealService.getMealById(mealId);
     }
 
     @DeleteMapping("/{mealId}")
-    void deleteMealById(@PathVariable Long mealId) {
+    public void deleteMealById(@PathVariable Long mealId) {
         mealService.deleteMealById(mealId);
     }
 
     @PostMapping("/")
-    void addMeal(@RequestBody MealDto mealDto) {
+    public void addMeal(@RequestBody MealDto mealDto) {
         mealService.addMeal(mealDto);
     }
 
     @PutMapping("/")
-    void updateMeal(@RequestBody MealDto mealDto) {
+    public void updateMeal(@RequestBody MealDto mealDto) {
         mealService.updateMeal(mealDto);
     }
 

@@ -13,6 +13,10 @@ class MealDataService {
     deleteMeal(id) {
         return http.delete('meals/' + id)
     }
+
+    updateMeal(meal) {
+        return http.put('meals/', meal);
+    }
 }
 
 export default new MealDataService();

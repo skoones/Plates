@@ -1,12 +1,8 @@
 <template>
   <div>
     <v-layout column>
-      <v-flex flat tile>
-        <plan-cell :day-of-week="dayName" :is-meal="false"></plan-cell>
-      </v-flex>
-      <v-flex v-for="meal in dailyMeals" :key="meal" flat tile>
-        <plan-cell :is-meal="true" :meal-type="meal"></plan-cell>
-      </v-flex>
+      <plan-cell :day-of-week="dayName" :is-meal="false" flat tile></plan-cell>
+      <plan-cell v-for="meal in dailyMeals" :key="meal" :is-meal="true" :meal-type="meal" flat tile></plan-cell>
     </v-layout>
   </div>
 </template>
