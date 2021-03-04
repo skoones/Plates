@@ -116,6 +116,7 @@ export default {
         mealType: this.selectedTypes,
         dietType: this.selectedDiets,
       };
+
       switch (this.action) {
         case 'Add':
           if (this.isCorrectMeal) {
@@ -130,6 +131,7 @@ export default {
             alert("Please fill out the required fields.");
           }
           break;
+
         case 'Update':
           for (element in meal) {
             if (meal[element].length !== 0) {
@@ -145,6 +147,7 @@ export default {
           this.resetInput();
           this.isDialogOpen = false;
           break;
+
         default:
           console.log('Invalid action');
       }
